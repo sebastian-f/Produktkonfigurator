@@ -13,11 +13,5 @@ namespace ProductConfigurator.Domain.Model
 		public string Name { get; set; }
 
 		public List<Part> Parts { get; set; }
-
-		[ForeignKey("Product")]
-		public virtual int ProductId { get; set; }
-
-		[ForeignKey("ProductId")]
-		public virtual Product Product { get; set; }
 	}
 }

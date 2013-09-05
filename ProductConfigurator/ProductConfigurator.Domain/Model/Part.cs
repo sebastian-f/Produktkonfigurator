@@ -14,11 +14,5 @@ namespace ProductConfigurator.Domain.Model
 		public TimeSpan Delivery { get; set; }
 		public string Code { get; set; }
 		public Category Category { get; set; }
-
-		[ForeignKey("Product")]
-		public virtual int ProductId { get; set; }
-
-		[ForeignKey("ProductId")]
-		public virtual Product Product { get; set; }
 	}
 }

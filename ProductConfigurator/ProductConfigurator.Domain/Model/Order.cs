@@ -14,11 +14,5 @@ namespace ProductConfigurator.Domain.Model
 		public double Price { get; set; }
 		public DateTime DeliveryDate { get; set; }
 		public string Code { get; set; }
-
-		[ForeignKey("User")]
-		public virtual int UserId { get; set; }
-
-		[ForeignKey("UserId")]
-		public virtual User User { get; set; }
 	}
 }
