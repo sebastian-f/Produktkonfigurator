@@ -14,9 +14,6 @@ namespace ProductConfigurator.Domain.Infrastructure
 		Product GetProduct(int id);
 		IList<Product> GetAllProducts();
 
-
-
-
 		IList<Category> GetCategory();
 
 	}
