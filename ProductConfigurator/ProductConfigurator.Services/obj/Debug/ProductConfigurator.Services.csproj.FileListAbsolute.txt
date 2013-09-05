@@ -1,0 +1,8 @@
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Services\bin\Debug\ProductConfigurator.Services.dll
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Services\bin\Debug\ProductConfigurator.Services.pdb
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Services\obj\Debug\ProductConfigurator.Services.dll
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Services\obj\Debug\ProductConfigurator.Services.pdb
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Services\bin\Debug\ProductConfigurator.Services.dll.config
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Services\bin\Debug\EntityFramework.dll
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Services\bin\Debug\EntityFramework.xml
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Services\obj\Debug\ProductConfigurator.Services.csprojResolveAssemblyReference.cache

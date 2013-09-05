@@ -1,0 +1,8 @@
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Domain\bin\Debug\ProductConfigurator.Domain.dll
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Domain\bin\Debug\ProductConfigurator.Domain.pdb
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Domain\obj\Debug\ProductConfigurator.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Domain\obj\Debug\ProductConfigurator.Domain.dll
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Domain\obj\Debug\ProductConfigurator.Domain.pdb
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Domain\bin\Debug\ProductConfigurator.Domain.dll.config
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Domain\bin\Debug\EntityFramework.dll
+C:\Users\Anton\Dropbox\ProductConfigurator\ProductConfigurator\ProductConfigurator.Domain\bin\Debug\EntityFramework.xml
