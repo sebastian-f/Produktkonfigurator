@@ -7,14 +7,11 @@ using ProductConfigurator.Domain.Model;
 
 namespace ProductConfigurator.Domain.Infrastructure
 {
-	public interface IRepository
+	public interface IUserRepository
 	{
-		void SaveProduct(Product product);
+		void SaveUser(User user);
+		User GetUserByName(string name);
 
-		Product GetProduct(int id);
-		IList<Product> GetAllProducts();
-
-		IList<Category> GetCategory();
-
+		void SaveOrder(Order order);
 	}
 }

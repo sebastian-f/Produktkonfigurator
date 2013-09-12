@@ -11,8 +11,10 @@ namespace ProductConfigurator.Domain.Model
 	public class Order
 	{
 		public int Id { get; set; }
-		public double Price { get; set; }
+		public decimal Price { get; set; }
 		public DateTime DeliveryDate { get; set; }
 		public string Code { get; set; }
+		public IList<Part> Parts { get; set; }
+
 	}
 }

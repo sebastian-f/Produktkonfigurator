@@ -131,6 +131,16 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProductConfigurator.Domain\ProductConfigurator.Domain.csproj">
+      <Project>{0dbc7b8e-cfa1-42f9-a8d9-14be1a199ba6}</Project>
+      <Name>ProductConfigurator.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProductConfigurator.Services\ProductConfigurator.Services.csproj">
+      <Project>{603fa931-4c1c-4c4d-a44e-da574f8a9904}</Project>
+      <Name>ProductConfigurator.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

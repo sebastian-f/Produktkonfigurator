@@ -10,8 +10,8 @@ namespace ProductConfigurator.Domain.Model
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public double Price { get; set; }
-		public TimeSpan Delivery { get; set; }
+		public decimal Price { get; set; }
+		public DateTime DeliveryDate { get; set; }
 		public string Code { get; set; }
 		public Category Category { get; set; }
 	}

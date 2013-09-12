@@ -9,7 +9,7 @@ namespace ProductConfigurator.Domain.Model
 	public class User
 	{
 		public int Id { get; set; }
-		public string UserName { get; set; }
+		public string Username { get; set; }
 		public string Password { get; set; }
 		public string Role { get; set; }
 		public string Telephone { get; set; }
@@ -20,7 +20,7 @@ namespace ProductConfigurator.Domain.Model
 		public string City { get; set; }
 		public string Country { get; set; }
 
-		public List<Order> Oders { get; set; }
+		public List<Order> Orders { get; set; }
 	
 	
 	}
