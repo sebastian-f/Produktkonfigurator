@@ -29,3 +29,5 @@ bin
 obj
 
 bin
+
+/ProductConfigurator/*.suo
