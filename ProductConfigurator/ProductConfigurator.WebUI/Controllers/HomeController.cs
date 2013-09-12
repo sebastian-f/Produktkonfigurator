@@ -10,12 +10,10 @@ namespace ProductConfigurator.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-		private IProductRepository _productRepo;
-
-        //
         // GET: /Home/
-		public HomeController() : this(new ProductRepository()) { }
 
+		private IProductRepository _productRepo;
+	
 		public HomeController(IProductRepository productRepo)
 		{
 			this._productRepo = productRepo;

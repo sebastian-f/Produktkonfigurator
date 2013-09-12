@@ -12,8 +12,28 @@ namespace ProductConfigurator.Services.Infrastructure.Data
 	{
 		public ProductConfiguratorDbContext()
 		{
-			Database.SetInitializer(new DropCreateDatabaseAlways<ProductConfiguratorDbContext>());
-			this.Database.Initialize(true);
+			if (!this.Database.CompatibleWithModel(false))
+			{
+				try
+				{
+					Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ProductConfiguratorDbContext>());
+					this.Database.Initialize(true);
+
+					System.Diagnostics.Process firstProc = new System.Diagnostics.Process();
+					firstProc.StartInfo.WorkingDirectory = @"C:\Windows\Microsoft.NET\Framework\v2.0.50727";
+					firstProc.StartInfo.FileName = "aspnet_regsql.exe";
+					firstProc.EnableRaisingEvents = true;
+
+					firstProc.Start();
+
+					firstProc.WaitForExit();
+				}
+				catch (Exception)
+				{
+
+					throw new NullReferenceException("Membership instance failed take a look at ProdConf.Services.Infrastructure.Data.ProductConfigurationDbContext");
+				}
+			}
 		}
 
 		public DbSet<User> Users { get; set; }
