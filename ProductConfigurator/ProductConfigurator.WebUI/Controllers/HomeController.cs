@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProductConfigurator.Domain.Infrastructure;
-using ProductConfigurator.Services.Infrastructure.Repository;
+using ProductConfigurator.Repository;
+using ProductConfigurator.Services.Interface;
 
 namespace ProductConfigurator.WebUI.Controllers
 {
@@ -12,11 +13,11 @@ namespace ProductConfigurator.WebUI.Controllers
     {
         // GET: /Home/
 
-		private IProductRepository _productRepo;
+		private IProductService _productService;
 	
-		public HomeController(IProductRepository productRepo)
+		public HomeController(IProductService productService)
 		{
-			this._productRepo = productRepo;
+			this._productService = productService;
 		}
 
         public ActionResult Index()

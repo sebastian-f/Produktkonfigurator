@@ -18,5 +18,9 @@ namespace ProductConfigurator.Services.Service
 			this._userRepo = userRepo;
 		}
 
+		public void CreateUser(Domain.Model.User user)
+		{
+			_userRepo.SaveUser(user);
+		}
 	}
 }

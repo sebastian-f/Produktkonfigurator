@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace ProductConfigurator.Domain.Model
+namespace ProductConfigurator.WebUI.Models
 {
-	public class User
+	public class UserViewModel
 	{
 		public int Id { get; set; }
 		public string Username { get; set; }
@@ -17,9 +16,5 @@ namespace ProductConfigurator.Domain.Model
 		public string ZipCode { get; set; }
 		public string City { get; set; }
 		public string Country { get; set; }
-
-		public List<Order> Orders { get; set; }
-	
-	
 	}
 }

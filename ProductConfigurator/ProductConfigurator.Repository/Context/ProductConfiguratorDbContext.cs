@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 using ProductConfigurator.Domain.Model;
 
-namespace ProductConfigurator.Services.Infrastructure.Data
+namespace ProductConfigurator.Repository.Context
 {
 	public class ProductConfiguratorDbContext : DbContext
 	{
@@ -18,7 +19,8 @@ namespace ProductConfigurator.Services.Infrastructure.Data
 				{
 					Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ProductConfiguratorDbContext>());
 					this.Database.Initialize(true);
-
+					
+					/*
 					System.Diagnostics.Process firstProc = new System.Diagnostics.Process();
 					firstProc.StartInfo.WorkingDirectory = @"C:\Windows\Microsoft.NET\Framework\v2.0.50727";
 					firstProc.StartInfo.FileName = "aspnet_regsql.exe";
@@ -27,6 +29,7 @@ namespace ProductConfigurator.Services.Infrastructure.Data
 					firstProc.Start();
 
 					firstProc.WaitForExit();
+					 */
 				}
 				catch (Exception)
 				{

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using ProductConfigurator;
 using ProductConfigurator.Domain.Infrastructure;
-using ProductConfigurator.Services.Infrastructure.Data;
+using ProductConfigurator.Repository.Context;
 
-namespace ProductConfigurator.Services.Infrastructure.Repository
+namespace ProductConfigurator.Repository
 {
     public class ProductRepository : IProductRepository
     {

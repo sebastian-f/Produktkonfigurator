@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProductConfigurator.Domain.Infrastructure;
 using ProductConfigurator.Services.Interface;
+using ProductConfigurator.Domain.Model;
 
 namespace ProductConfigurator.Services.Service
 {

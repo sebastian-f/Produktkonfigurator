@@ -8,5 +8,6 @@ namespace ProductConfigurator.Services.Interface
 {
 	public interface IProductService
 	{
+
 	}
 }

@@ -12,7 +12,7 @@ namespace ProductConfigurator.WebUI.App_Start
     using Ninject.Web.Common;
 
 	using ProductConfigurator.Domain.Infrastructure;
-	using ProductConfigurator.Services.Infrastructure.Repository;
+	using ProductConfigurator.Repository;
 	using ProductConfigurator.Services.Service;
 	using ProductConfigurator.Services.Interface;
 
