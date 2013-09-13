@@ -1,0 +1,19 @@
+﻿@model ProductConfigurator.WebUI.Models.UserViewModel
+
+@{
+    ViewBag.Title = "CreateAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateAccount</h2>
+
+@using (Html.BeginForm())
+{
+	//@Html.ValidationSummary()
+	@Html.EditorForModel()
+	@Html.Label("Password");
+	<br />
+	@Html.Password("password");
+	<br />
+	<input type="submit" value="Create Account" />
+}
