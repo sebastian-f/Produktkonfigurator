@@ -11,11 +11,18 @@ namespace ProductConfigurator.Services.Service
 {
 	public class ProductService : IProductService
 	{
-		private IProductRepository _prodoceRepo;
+		private IProductRepository _productRepo;
 
-		public ProductService(IProductRepository procuceRepo)
+		public ProductService(IProductRepository productRepo)
 		{
-			this._prodoceRepo = procuceRepo;
+            this._productRepo = productRepo;
 		}
+
+        //Save new product
+        public void SaveProduct(Product product)
+        {
+            //TODO: Kolla så att id = 0
+            _productRepo.SaveProduct(product);
+        }
 	}
 }

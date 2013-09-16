@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProductConfigurator.Domain.Infrastructure;
-using ProductConfigurator.Repository;
 using ProductConfigurator.Services.Interface;
+using ProductConfigurator.WebUI.Models;
 
 namespace ProductConfigurator.WebUI.Controllers
 {
@@ -22,6 +22,10 @@ namespace ProductConfigurator.WebUI.Controllers
 
         public ActionResult Index()
         {
+            //TEST
+            ProductViewModel product = new ProductViewModel{Name="Båt"};
+            _productService.SaveProduct(product.ToDomainModel());
+
             return View();
         }
 

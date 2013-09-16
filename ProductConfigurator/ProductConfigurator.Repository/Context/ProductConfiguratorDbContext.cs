@@ -13,8 +13,8 @@ namespace ProductConfigurator.Repository.Context
 	{
 		public ProductConfiguratorDbContext()
 		{
-			if (!this.Database.CompatibleWithModel(false))
-			{
+			//if (!this.Database.CompatibleWithModel(false))
+			//{
 				try
 				{
 					Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ProductConfiguratorDbContext>());
@@ -31,12 +31,12 @@ namespace ProductConfigurator.Repository.Context
 					firstProc.WaitForExit();
 					 */
 				}
-				catch (Exception)
+				catch (Exception ex)
 				{
 
-					throw new NullReferenceException("Membership instance failed take a look at ProdConf.Services.Infrastructure.Data.ProductConfigurationDbContext");
+					throw new NullReferenceException("",ex);
 				}
-			}
+			//}
 		}
 
 		public DbSet<User> Users { get; set; }

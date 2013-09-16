@@ -15,5 +15,11 @@ namespace ProductConfigurator.WebUI
 			return domainUser;
 		}
 
+        public static Domain.Model.Product ToDomainModel(this ProductViewModel product) 
+        {
+            var domainProduct = AutoMapper.Mapper.Map<Domain.Model.Product>(product);
+            return domainProduct;
+        }
+
 	}
 }
