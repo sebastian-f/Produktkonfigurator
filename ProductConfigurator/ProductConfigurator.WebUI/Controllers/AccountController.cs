@@ -43,21 +43,21 @@ namespace ProductConfigurator.WebUI.Controllers
 		[HttpPost]
 		public ActionResult CreateAccount(UserViewModel user, string password)
 		{
+			//if (ModelState.IsValid)
+			//{
+				try
+				{
+					Membership.CreateUser(user.Username, password);
+					_userService.CreateUser(user.ToDomainModel());
+					return RedirectToAction("Index", "Home");
+				}
+				catch (Exception ex)
+				{
 
-			try
-			{
-				Membership.CreateUser(user.Username, password);
-				_userService.CreateUser(user.ToDomainModel());
-			}
-			catch (Exception)
-			{
-				
-				throw;
-			}
-			
-
-			_userService.CreateUser(user.ToDomainModel());
-			return View();
+					throw new NullReferenceException("", ex);
+				}
+			//}
+			return View(user);
 		}
 
 		public ActionResult Logout()
