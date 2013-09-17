@@ -24,5 +24,10 @@ namespace ProductConfigurator.Services.Service
             //TODO: Kolla så att id = 0
             _productRepo.SaveProduct(product);
         }
-	}
+
+        public IEnumerable<Product> GetAll()
+        {
+            return _productRepo.GetAllProducts();
+        }
+    }
 }

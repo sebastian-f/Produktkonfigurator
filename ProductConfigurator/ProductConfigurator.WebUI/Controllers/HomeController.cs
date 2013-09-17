@@ -22,12 +22,15 @@ namespace ProductConfigurator.WebUI.Controllers
 
         public ActionResult Index()
         {
-            //TEST
-            ProductViewModel product = new ProductViewModel{Name="Båt"};
-            _productService.SaveProduct(product.ToDomainModel());
+            //TESTAR
+            //ProductViewModel product = new ProductViewModel{Name="Båt"};
+            //_productService.SaveProduct(product.ToDomainModel());
+
+            IEnumerable<ProductViewModel> products = _productService.GetAll().ToViewModel();
 
             return View();
         }
+
 
     }
 }

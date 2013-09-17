@@ -9,6 +9,7 @@ namespace ProductConfigurator.Services.Interface
 {
 	public interface IProductService
 	{
+        IEnumerable<Product> GetAll();
         void SaveProduct(Product product);
 	}
 }
