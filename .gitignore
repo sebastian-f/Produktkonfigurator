@@ -32,3 +32,4 @@ bin
 
 /ProductConfigurator/*.suo
 Web.config
+/ProductConfigurator/ProductConfigurator.WebUI/Web.config
