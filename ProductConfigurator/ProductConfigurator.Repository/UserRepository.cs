@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ProductConfigurator.Domain.Infrastructure;
 using ProductConfigurator.Repository.Context;
+using System.Data.Entity;
 
 namespace ProductConfigurator.Repository
 {
@@ -21,7 +22,7 @@ namespace ProductConfigurator.Repository
 
 		public Domain.Model.User GetUserByName(string name)
 		{
-			return _context.Users.SingleOrDefault(x => x.Username == name);
+			return _context.Users.Include(y=>y.Orders.Select(z=>z.Parts)).SingleOrDefault(x => x.Username == name);
 		}
 
 		public void SaveOrder(Domain.Model.Order order)

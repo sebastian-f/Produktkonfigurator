@@ -10,19 +10,9 @@ namespace ProductConfigurator.WebUI
 	{
 		public static Domain.Model.User ToDomainModel(this UserViewModel user)
 		{
+			AutoMapper.Mapper.CreateMap<UserViewModel, Domain.Model.User>();
 			var domainUser = AutoMapper.Mapper.Map<Domain.Model.User>(user);
-			/*var domainUser = new Domain.Model.User();
-			domainUser.Id = user.Id;
-			domainUser.Username = user.Username;
-			domainUser.Telephone = user.Telephone;
-			domainUser.Email = user.Email;
-			domainUser.Company = user.Company;
-			domainUser.StreetName = user.StreetName;
-			domainUser.ZipCode = user.ZipCode;
-			domainUser.City = user.City;
-			domainUser.Country = user.Country;*/
 			
-
 			return domainUser;
 		}
 

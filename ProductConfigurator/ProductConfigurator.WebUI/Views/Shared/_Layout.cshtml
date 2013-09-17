@@ -1,5 +1,7 @@
 ﻿@{
     Layout = null;
+	bool IsAuthenticated = User.Identity.IsAuthenticated;
+	var user = User.Identity.Name;
 }
 
 <!DOCTYPE html>
@@ -10,6 +12,23 @@
     <title>_Layout</title>
 </head>
 <body>
+	<div>
+		@if (!IsAuthenticated)
+  {
+		@Html.ActionLink("Login", "Login", "Account")
+		<br />
+		@Html.ActionLink("Create Account", "CreateAccount", "Account")
+		<br />
+  }
+		else
+  {
+		@:Welcome, @User.Identity.Name
+		<br />
+		@Html.ActionLink("Logout", "Logout", "Account")
+  }
+		
+	</div>
+	<hr />
     <div>
         @RenderBody()
     </div>

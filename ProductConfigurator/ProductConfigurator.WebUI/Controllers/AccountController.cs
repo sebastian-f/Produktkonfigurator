@@ -21,16 +21,28 @@ namespace ProductConfigurator.WebUI.Controllers
 			this._userService = userService;
 		}
 
+		[HttpGet]
         public ActionResult Login()
         {
-			var u = new UserViewModel();
-
-			var e = u.ToDomainModel();
             return View();
         }
 
+		[HttpPost]
 		public ActionResult Login(string username, string password)
 		{
+			try
+			{
+				if (Membership.ValidateUser(username, password))
+				{
+					FormsAuthentication.SetAuthCookie(username, false);
+					return RedirectToAction("Index", "Home");
+				}
+			}
+			catch (Exception)
+			{
+
+				ModelState.AddModelError(string.Empty, "Failed login");
+			}
 			return View();
 		}
 
@@ -62,7 +74,8 @@ namespace ProductConfigurator.WebUI.Controllers
 
 		public ActionResult Logout()
 		{
-			return View();
+			FormsAuthentication.SignOut();
+			return RedirectToAction("Index", "Home");
 		}
     }
 }

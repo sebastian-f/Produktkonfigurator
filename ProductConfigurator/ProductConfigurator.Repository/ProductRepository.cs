@@ -4,6 +4,7 @@ using System.Linq;
 using ProductConfigurator;
 using ProductConfigurator.Domain.Infrastructure;
 using ProductConfigurator.Repository.Context;
+using System.Data.Entity;
 
 namespace ProductConfigurator.Repository
 {
@@ -18,12 +19,12 @@ namespace ProductConfigurator.Repository
 
 		public Domain.Model.Product GetProduct(int id)
 		{
-			return _context.Products.SingleOrDefault(x => x.Id == id);
+			return _context.Products.Include(y=>y.Category.Select(z=>z.Parts)).SingleOrDefault(x => x.Id == id);
 		}
 
 		public IQueryable<Domain.Model.Product> GetAllProducts()
 		{
-			return _context.Products;
+			return _context.Products.Include(x=>x.Category.Select(y=>y.Parts));
 		}
 
 		public void SavePart(Domain.Model.Part part)
