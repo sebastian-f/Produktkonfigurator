@@ -15,6 +15,7 @@ namespace ProductConfigurator.Repository
 		public void SaveProduct(Domain.Model.Product product)
 		{
 			_context.Products.Add(product);
+            _context.SaveChanges();
 		}
 
 		public Domain.Model.Product GetProduct(int id)

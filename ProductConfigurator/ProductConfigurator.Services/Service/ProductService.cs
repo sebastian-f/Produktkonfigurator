@@ -15,7 +15,19 @@ namespace ProductConfigurator.Services.Service
 
 		public ProductService(IProductRepository productRepo)
 		{
-			this._productRepo = productRepo;
+            this._productRepo = productRepo;
 		}
-	}
+
+        //Save new product
+        public void SaveProduct(Product product)
+        {
+            //TODO: Kolla så att id = 0
+            _productRepo.SaveProduct(product);
+        }
+
+        public IEnumerable<Product> GetAll()
+        {
+            return _productRepo.GetAllProducts();
+        }
+    }
 }

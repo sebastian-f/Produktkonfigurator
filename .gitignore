@@ -31,3 +31,4 @@ obj
 bin
 
 /ProductConfigurator/*.suo
+Web.config
