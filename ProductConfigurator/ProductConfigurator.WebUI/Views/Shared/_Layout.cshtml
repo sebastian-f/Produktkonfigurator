@@ -8,6 +8,10 @@
 
 <html>
 <head>
+	<script src="~/Script/jquery-1.9.1.min.js"></script>
+	<script src="~/bootstrap/js/bootstrap.min.js"></script>
+	<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<link href="~/Style/StyleSheet1.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <title>_Layout</title>
 </head>
@@ -29,8 +33,11 @@
 		
 	</div>
 	<hr />
-    <div>
-        @RenderBody()
-    </div>
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			@RenderBody()
+		</div>
+	</div>
+
 </body>
 </html>

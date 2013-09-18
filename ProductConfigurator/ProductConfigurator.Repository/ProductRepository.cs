@@ -28,6 +28,9 @@ namespace ProductConfigurator.Repository
 			return _context.Products.Include(x=>x.Category.Select(y=>y.Parts));
 		}
 
+
+
+
 		public void SavePart(Domain.Model.Part part)
 		{
 			_context.Parts.Add(part);
@@ -41,6 +44,11 @@ namespace ProductConfigurator.Repository
 		public void SaveCategory(Domain.Model.Category category)
 		{
 			_context.Categorys.Add(category);
+		}
+
+		public IQueryable<Domain.Model.Part> GetPartsByCategory(Domain.Model.Category category)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

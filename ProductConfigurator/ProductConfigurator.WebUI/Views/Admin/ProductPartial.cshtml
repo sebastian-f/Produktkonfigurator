@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ProductConfigurator.WebUI.Models.ProductViewModel>
+
+@{
+	ViewBag.ProductList = new SelectList(Model, "Id", "Name");
+	
+}
+
+<div class="span6 center">
+	@Html.DropDownList("ProductList")
+</div>
+
+<div class="span6 center">
+
+@using (Html.BeginForm("AddProduct", "Admin"))
+{
+
+	@Html.TextBox("name", null, new { @placeholder = "Product Name" })
+	<br />
+	
+	<input type="submit" value="New Product" />
+}
+
+</div>

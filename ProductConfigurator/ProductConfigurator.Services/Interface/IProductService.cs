@@ -10,6 +10,7 @@ namespace ProductConfigurator.Services.Interface
 	public interface IProductService
 	{
         IEnumerable<Product> GetAll();
+		Product GetById(int id);
         void SaveProduct(Product product);
 	}
 }

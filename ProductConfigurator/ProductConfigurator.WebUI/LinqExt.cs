@@ -8,6 +8,28 @@ namespace ProductConfigurator.WebUI
 {
 	public static class linqExt
 	{
+		public static U MapTo<T, U>(this T model, U mapTo) where U : new()
+		{
+			AutoMapper.Mapper.CreateMap<T, U>();
+			var mappedTo = AutoMapper.Mapper.Map<U>(model);
+
+			return mappedTo;
+		}
+
+		public static IList<U> MapTo<T, U>(this IEnumerable<T> model, IList<U> mapTo)
+		{
+			//TODO:Flytta
+			AutoMapper.Mapper.CreateMap<T, U>();
+
+			var mappedTo = mapTo;
+
+			foreach (var prod in typeof(T).GetProperties())
+			{
+				mappedTo.Add(AutoMapper.Mapper.Map<U>(prod));
+			}
+			return mappedTo;
+		}
+
 		public static Domain.Model.User ToDomainModel(this UserViewModel user)
 		{
 			AutoMapper.Mapper.CreateMap<UserViewModel, Domain.Model.User>();
