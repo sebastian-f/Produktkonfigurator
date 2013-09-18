@@ -27,7 +27,7 @@ function ajax(pos, url, id) {
 	if (id == null) {
 		$.ajax({
 			type: "POST",
-			url: url,
+			url: baseUrl,
 			async: false,
 			success: function (result) {
 				$(pos).html(result);
@@ -40,7 +40,7 @@ function ajax(pos, url, id) {
 	else {
 		$.ajax({
 			type: "GET",
-			url: url,
+			url: baseUrl,
 			success: function (result) {
 				$(pos).html(result);
 			},
