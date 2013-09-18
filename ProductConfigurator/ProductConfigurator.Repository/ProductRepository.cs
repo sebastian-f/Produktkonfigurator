@@ -28,12 +28,10 @@ namespace ProductConfigurator.Repository
 			return _context.Products.Include(x=>x.Category.Select(y=>y.Parts));
 		}
 
-
-
-
-		public void SavePart(Domain.Model.Part part)
+		public void SavePart(Domain.Model.Part part, int categoryId)
 		{
-			_context.Parts.Add(part);
+            _context.Categorys.SingleOrDefault(x => x.Id == categoryId).Parts.Add(part);
+            _context.SaveChanges();
 		}
 
 		public Domain.Model.Part GetPartByCode(string code)
@@ -41,14 +39,17 @@ namespace ProductConfigurator.Repository
 			return _context.Parts.SingleOrDefault(x => x.Code == code);
 		}
 
-		public void SaveCategory(Domain.Model.Category category)
+		public void SaveCategory(Domain.Model.Category category, int productId)
 		{
-			_context.Categorys.Add(category);
+            _context.Products.SingleOrDefault(x => x.Id == productId).Category.Add(category);
+            _context.SaveChanges();
+
+            
 		}
 
-		public IQueryable<Domain.Model.Part> GetPartsByCategory(Domain.Model.Category category)
-		{
-			throw new NotImplementedException();
-		}
-	}
+        public IQueryable<Domain.Model.Part> GetPartsByCategoryId(int categoryId)
+        {
+            return _context.Categorys.SingleOrDefault(x => x.Id == categoryId).Parts as IQueryable<Domain.Model.Part>;
+        }
+    }
 }

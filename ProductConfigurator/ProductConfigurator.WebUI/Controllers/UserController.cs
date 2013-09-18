@@ -25,13 +25,25 @@ namespace ProductConfigurator.WebUI.Controllers
 
         public ActionResult ProductPartial()
         {
-            IEnumerable<ProductViewModel> model = _productService.GetAll().ToViewModel();
-            
+            //IEnumerable<ProductViewModel> model = _productService.GetAll().MapToList(new List<ProductViewModel>());
+            IEnumerable<Product> products = _productService.GetAll();
+
+            //AutoMapper.Mapper.CreateMap<Product, ProductViewModel>();
+            IEnumerable<ProductViewModel> model = products.MapToList(new List<ProductViewModel>());
+
             return View(model);
         }
 
         public ActionResult CategoryPartial()
         {
+            var product = _productService.GetById(1);
+            var categories = product.Category;
+
+            Category cat = new Category { Name = "TEST" };
+
+            //_productService.SaveCategory(cat);
+
+
             return View();
         }
 

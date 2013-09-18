@@ -12,5 +12,8 @@ namespace ProductConfigurator.Services.Interface
         IEnumerable<Product> GetAll();
 		Product GetById(int id);
         void SaveProduct(Product product);
+        void SavePart(Part part, int categoryId);
+        Part GetPartByCode(string code);
+        void SaveCategory(Category category, int productId);
 	}
 }

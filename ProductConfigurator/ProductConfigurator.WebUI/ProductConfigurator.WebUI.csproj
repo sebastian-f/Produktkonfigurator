@@ -131,6 +131,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LinqExt.cs" />
+    <Compile Include="Models\CategoryPartsViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -209,6 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\ProductPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\CategoryPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
