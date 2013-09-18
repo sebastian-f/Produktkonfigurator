@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\IProductRepository.cs" />
     <Compile Include="Infrastructure\IUserRepository.cs" />
+    <Compile Include="Infrastructure\IOrderRepository.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Part.cs" />
