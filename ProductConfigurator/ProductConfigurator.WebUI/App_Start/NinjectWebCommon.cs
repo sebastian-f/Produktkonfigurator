@@ -59,7 +59,7 @@ namespace ProductConfigurator.WebUI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-			kernel.Bind<IProductRepository>().To<ProductRepository>();
+            kernel.Bind<IProductRepository>().To<ProductRepository>();
 			kernel.Bind<IUserRepository>().To<UserRepository>();
 			kernel.Bind<IProductService>().To<ProductService>();
 			kernel.Bind<IUserService>().To<UserService>();

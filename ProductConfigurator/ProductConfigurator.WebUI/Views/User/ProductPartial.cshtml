@@ -1,0 +1,7 @@
+﻿@model IEnumerable<ProductConfigurator.WebUI.Models.ProductViewModel>
+
+<div>Vår partial!</div>
+
+@Html.DropDownList("Product", Model.Select(p => new SelectListItem{Text=p.Name, Value=p.Id.ToString()})
+    )
+
