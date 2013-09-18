@@ -16,17 +16,11 @@ namespace ProductConfigurator.WebUI
 			return mappedTo;
 		}
 
-		public static IList<U> MapTo<T, U>(this IEnumerable<T> model, IList<U> mapTo)
+		public static IEnumerable<U> MapToList<T, U>(this IEnumerable<T> model, IEnumerable<U> mapTo)
 		{
-			//TODO:Flytta
 			AutoMapper.Mapper.CreateMap<T, U>();
-
-			var mappedTo = mapTo;
-
-			foreach (var prod in typeof(T).GetProperties())
-			{
-				mappedTo.Add(AutoMapper.Mapper.Map<U>(prod));
-			}
+			var mappedTo = AutoMapper.Mapper.Map<IEnumerable<T>, IEnumerable<U>>(model);
+			
 			return mappedTo;
 		}
 

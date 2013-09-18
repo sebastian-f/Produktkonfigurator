@@ -42,13 +42,21 @@ namespace ProductConfigurator.WebUI.Controllers
 			return View();
 		}
 
-		public ActionResult CategoryPartial(int productId)
+		public ActionResult CategoryPartial(int id)
 		{
 			//var productViewModel = _productService.GetById(productId).MapTo(new List<CategoryViewModel>());
 
 			var productViewModel = new List<CategoryViewModel>();
 			productViewModel.Add(new CategoryViewModel() { Id = 1, Name = "category" });
 			return View(productViewModel);
+		}
+
+		public ActionResult AddCategory(string name)
+		{
+			var category = new CategoryViewModel() { Name = name };
+
+			_productService.SaveCategory(category.MapTo(new Domain.Model.Category()));
+			return View();
 		}
 
 

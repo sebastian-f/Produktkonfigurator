@@ -34,5 +34,11 @@ namespace ProductConfigurator.Services.Service
 		{
 			return _productRepo.GetProduct(id);
 		}
+
+
+		public void SaveCategory(Category category)
+		{
+			_productRepo.SaveCategory(category);
+		}
 	}
 }

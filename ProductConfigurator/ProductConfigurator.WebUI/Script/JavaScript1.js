@@ -3,12 +3,7 @@
 
 $(function () {
 
-	ajax("#Product", "http://localhost:10764/Admin/ProductPartial");
-	
-
-
-	//alert($('#ProductList :selected').val());
-
+	ajax("#Product", "Admin/ProductPartial");
 
 	$('#ProductList').change(function () {
 
@@ -20,13 +15,29 @@ $(function () {
 
 });
 
+function SaveObj(name, path) {
+	var baseUrl = "http://" + location.host + "/" + path + "/" + id;
 
-function ajax(pos, url, id) {
-	var baseUrl = "http://localhost:10764/" + url + "/" + id;
+	$.ajax({
+		type: "GET",
+		url: baseUrl,
+		async: false,
+		success: function (result) {
+			$(pos).html(result);
+		},
+		error: function (xhr, status) {
+			alert(status);
+		}
+	});
+	
+}
 
+function ajax(pos, path, id) {
+	var baseUrl = "http://" + location.host + "/" + path + "/" + id;
+	
 	if (id == null) {
 		$.ajax({
-			type: "POST",
+			type: "GET",
 			url: baseUrl,
 			async: false,
 			success: function (result) {
@@ -41,11 +52,11 @@ function ajax(pos, url, id) {
 		$.ajax({
 			type: "GET",
 			url: baseUrl,
+			async: false,
 			success: function (result) {
 				$(pos).html(result);
 			},
 			error: function (xhr, status) {
-				alert(baseUrl);
 				alert(status);
 			}
 		});

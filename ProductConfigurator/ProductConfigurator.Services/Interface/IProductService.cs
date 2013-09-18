@@ -12,5 +12,7 @@ namespace ProductConfigurator.Services.Interface
         IEnumerable<Product> GetAll();
 		Product GetById(int id);
         void SaveProduct(Product product);
+
+		void SaveCategory(Category category);
 	}
 }
