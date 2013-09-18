@@ -29,5 +29,10 @@ namespace ProductConfigurator.Services.Service
         {
             return _productRepo.GetAllProducts();
         }
-    }
+
+		public Product GetById(int id)
+		{
+			return _productRepo.GetProduct(id);
+		}
+	}
 }

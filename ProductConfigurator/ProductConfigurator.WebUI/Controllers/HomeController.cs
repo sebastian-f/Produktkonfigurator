@@ -26,7 +26,7 @@ namespace ProductConfigurator.WebUI.Controllers
             //ProductViewModel product = new ProductViewModel{Name="Båt"};
             //_productService.SaveProduct(product.ToDomainModel());
 
-            IEnumerable<ProductViewModel> products = _productService.GetAll().ToViewModel();
+			IEnumerable<ProductViewModel> products = _productService.GetAll().MapTo(new List<ProductViewModel>());//.ToViewModel();
 
             return View();
         }

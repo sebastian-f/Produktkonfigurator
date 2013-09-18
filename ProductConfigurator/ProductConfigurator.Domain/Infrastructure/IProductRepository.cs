@@ -14,8 +14,9 @@ namespace ProductConfigurator.Domain.Infrastructure
 		IQueryable<Product> GetAllProducts();
 
 		void SavePart(Part part);
-		//IQueryable<Part> GetPartsByCategory(Category category);
+		IQueryable<Part> GetPartsByCategory(Category category);
 		Part GetPartByCode(string code);
+
 
 		void SaveCategory(Category category);
 	}

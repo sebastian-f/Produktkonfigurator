@@ -55,17 +55,16 @@ namespace ProductConfigurator.WebUI.Controllers
 		[HttpPost]
 		public ActionResult CreateAccount(UserViewModel user, string password)
 		{
-			//if (ModelState.IsValid)
+			//if (ModelState.IsValid) TODO: Hur funkar modelstate här?
 			//{
 				try
 				{
 					Membership.CreateUser(user.Username, password);
-					_userService.CreateUser(user.ToDomainModel());
+					_userService.CreateUser(user.MapTo(new Domain.Model.User()));
 					return RedirectToAction("Index", "Home");
 				}
 				catch (Exception ex)
 				{
-
 					throw new NullReferenceException("", ex);
 				}
 			//}
