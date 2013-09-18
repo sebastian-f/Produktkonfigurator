@@ -13,11 +13,13 @@ namespace ProductConfigurator.Domain.Infrastructure
 		Product GetProduct(int id);
 		IQueryable<Product> GetAllProducts();
 
-		void SavePart(Part part);
-		IQueryable<Part> GetPartsByCategory(Category category);
+		
+		IQueryable<Part> GetPartsByCategoryId(int categoryId);
+        void SavePart(Part part, int categoryId);
 		Part GetPartByCode(string code);
 
+		void SaveCategory(Category category, int productId);
 
-		void SaveCategory(Category category);
+        
 	}
 }

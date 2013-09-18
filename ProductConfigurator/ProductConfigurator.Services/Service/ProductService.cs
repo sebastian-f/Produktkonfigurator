@@ -35,10 +35,19 @@ namespace ProductConfigurator.Services.Service
 			return _productRepo.GetProduct(id);
 		}
 
+        public void SavePart(Part part, int categoryId)
+        {
+            _productRepo.SavePart(part, categoryId);
+        }
 
-		public void SaveCategory(Category category)
-		{
-			_productRepo.SaveCategory(category);
-		}
-	}
+        public Part GetPartByCode(string code)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveCategory(Category category, int productId)
+        {
+            _productRepo.SaveCategory(category, productId);
+        }
+    }
 }

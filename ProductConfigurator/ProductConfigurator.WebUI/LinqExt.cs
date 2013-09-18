@@ -16,13 +16,13 @@ namespace ProductConfigurator.WebUI
 			return mappedTo;
 		}
 
-		public static IEnumerable<U> MapToList<T, U>(this IEnumerable<T> model, IEnumerable<U> mapTo)
-		{
-			AutoMapper.Mapper.CreateMap<T, U>();
-			var mappedTo = AutoMapper.Mapper.Map<IEnumerable<T>, IEnumerable<U>>(model);
-			
-			return mappedTo;
-		}
+        public static IList<U> MapToList<T, U>(this IEnumerable<T> model, IList<U> mapTo)
+        {
+            AutoMapper.Mapper.CreateMap<T, U>();
+            var mappedTo = AutoMapper.Mapper.Map<IEnumerable<T>, IList<U>>(model);
+
+            return mappedTo;
+        }
 
 		public static Domain.Model.User ToDomainModel(this UserViewModel user)
 		{
