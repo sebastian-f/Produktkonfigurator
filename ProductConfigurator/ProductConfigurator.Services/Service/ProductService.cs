@@ -29,5 +29,6 @@ namespace ProductConfigurator.Services.Service
         {
             return _productRepo.GetAllProducts();
         }
+
     }
 }
