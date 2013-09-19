@@ -70,21 +70,40 @@ namespace ProductConfigurator.Repository
 
         public IQueryable<Domain.Model.Part> GetPartsByCategoryId(int categoryId)
         {
-
 			return _context.Parts.Where(x=>x.CategoryId == categoryId);
-            //return _context.Categorys.SingleOrDefault(x => x.Id == categoryId).Parts as IQueryable<Domain.Model.Part>;
         }
 
 
-		public void SavePartRelation(Domain.Model.PartCompatibility comp)
+		public void SavePartRelation(int oneid, List<int> twoid)
 		{
-			_context.PartCompatibilitys.Add(comp);
+			var one = GetPartById(oneid);
+			foreach (var item in twoid)
+			{
+				var two = GetPartById(item);
+				var partComp = new Domain.Model.PartCompatibility() { PartOne = one, PartTwo = two };
+
+				if (!HasRelations(one.Id, two.Id))
+					_context.PartCompatibilitys.Add(partComp);
+				else
+					_context.PartCompatibilitys.Remove(_context.PartCompatibilitys.SingleOrDefault(x => (x.PartOne.Id == oneid && x.PartTwo.Id == twoid.FirstOrDefault()) || (x.PartOne.Id == twoid.FirstOrDefault() && x.PartTwo.Id == oneid)));
+			}
+			
+			_context.SaveChanges();
 		}
 
 
 		public IQueryable<Domain.Model.PartCompatibility> GetRelations(int partId)
 		{
 			return _context.PartCompatibilitys.Where(x=>x.PartOne.Id == partId || x.PartTwo.Id == partId);
+		}
+
+
+		public bool HasRelations(int partId, int compareTo)
+		{
+			if (_context.PartCompatibilitys.FirstOrDefault(x => (x.PartOne.Id == partId && x.PartTwo.Id == compareTo) || (x.PartOne.Id == compareTo && x.PartTwo.Id == partId)) != null)
+				return true;
+			else
+				return false;
 		}
 	}
 }

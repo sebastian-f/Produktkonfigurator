@@ -29,18 +29,65 @@ $(function () {
 			$('#PartList').change(function () {
 				var partId = $('#PartList :selected').val();
 
-				ajax("#PartDetails", "Admin/PartDetailsPartial", productId);
+				ajax("#PartDetails", "Admin/PartDetailsPartial", partId);
 
 				$('#partId').val($('#PartList :selected').val());
 
 
+				
+				$(".box").click(function () {
+					var list = new Array();
+					list[0] = $(this).attr('value');
+					SaveRels(list);
+				});
+				
+
+				/*
+				$('#relation').click(function () {
+					var list = new Array();
+					var i = 0;
+					$(".box").each(function () {
+						if ($(this).prop('checked')) {
+							list[i] = $(this).attr('value');
+							i++;
+						}
+					});
+					SaveRels(list);
 
 
+				});*/
 			});
 		});
 	});
+
+
+	
+
 });
 
+
+function SaveRels(idList) {
+	var productId = $('#PartList :selected').val();
+
+	for (var i = 0; i < idList.length; i++) {
+
+
+		var baseUrl = "http://localhost:10764" + "/Admin/AddRelation?oneId=" + productId + "&twoId=" + idList[i];
+
+		$.ajax({
+			type: "POST",
+			url: baseUrl,
+			async: true,
+			//data: { oneId: productId, twoId: idList },
+			success: function (result) {
+				//alert("success");
+			},
+			error: function (xhr, status) {
+				alert(status);
+			}
+		});
+	}
+}
 
 /*
 function SaveObj(name, path) {
@@ -75,7 +122,7 @@ function ajax(pos, path, id) {
 				$(pos).html(result);
 			},
 			error: function (xhr, status) {
-				alert(status);
+				//alert(status);
 			}
 		});
 	}
@@ -88,7 +135,7 @@ function ajax(pos, path, id) {
 				$(pos).html(result);
 			},
 			error: function (xhr, status) {
-				alert(status);
+				//alert(status);
 			}
 		});
 	}

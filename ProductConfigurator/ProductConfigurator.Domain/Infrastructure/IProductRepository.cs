@@ -18,8 +18,9 @@ namespace ProductConfigurator.Domain.Infrastructure
         void SavePart(Part part);
 		Part GetPartById(int id);
 
-		void SavePartRelation(PartCompatibility comp);
+		void SavePartRelation(int oneid, List<int> twoid);
 		IQueryable<PartCompatibility> GetRelations(int partId);
+		bool HasRelations(int partId, int compareTo);
 
 		void SaveCategory(Category category);
 

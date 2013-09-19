@@ -13,6 +13,7 @@ namespace ProductConfigurator.WebUI.Models
 		public decimal Price { get; set; }
 		public DateTime DeliveryDate { get; set; }
 		public string Code { get; set; }
+		public bool Checked { get; set; }
 
 		public ICollection<PartViewModel> CompatibleParts { get; set; }
 
