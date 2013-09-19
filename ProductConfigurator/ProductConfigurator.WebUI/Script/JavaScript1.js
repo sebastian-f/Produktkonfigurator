@@ -5,23 +5,54 @@ $(function () {
 
 	ajax("#Product", "Admin/ProductPartial");
 
+
 	$('#ProductList').change(function () {
 
 
-		var myselect = document.getElementById("ProductList");
-		var productId = myselect.options[myselect.selectedIndex].value;
-		ajax("#Category", "Admin/CategoryPartial", productId);
-	});
+		var productId = $('#ProductList :selected').val();
 
+		ajax("#Category", "Admin/CategoryPartial", productId);
+
+		$('#productId').val($('#ProductList :selected').val());
+
+		$('#Part').html('');
+
+
+		$('#CategoryList').change(function () {
+			var categoryId = $('#CategoryList :selected').val();
+	
+			ajax("#Part", "Admin/PartPartial", categoryId);
+	
+			$('#categoryId').val($('#CategoryList :selected').val());
+
+
+			$('#PartList').change(function () {
+				var partId = $('#PartList :selected').val();
+
+				ajax("#PartDetails", "Admin/PartDetailsPartial", productId);
+
+				$('#partId').val($('#PartList :selected').val());
+
+
+
+
+			});
+		});
+	});
 });
 
+
+/*
 function SaveObj(name, path) {
-	var baseUrl = "http://" + location.host + "/" + path + "/" + id;
+	var baseUrl = "http://" + location.host + "/" + path
+
+	var productId = $('#ProductList :selected').val()
 
 	$.ajax({
-		type: "GET",
+		type: "POST",
 		url: baseUrl,
 		async: false,
+		data: { name: name, productId: productId },
 		success: function (result) {
 			$(pos).html(result);
 		},
@@ -31,7 +62,7 @@ function SaveObj(name, path) {
 	});
 	
 }
-
+*/
 function ajax(pos, path, id) {
 	var baseUrl = "http://" + location.host + "/" + path + "/" + id;
 	

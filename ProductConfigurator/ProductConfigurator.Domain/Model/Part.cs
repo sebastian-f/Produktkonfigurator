@@ -13,6 +13,11 @@ namespace ProductConfigurator.Domain.Model
 		public decimal Price { get; set; }
 		public DateTime DeliveryDate { get; set; }
 		public string Code { get; set; }
+
+		[ForeignKey("Category")]
+		public int CategoryId { get; set; }
+
+		[ForeignKey("CategoryId")]
 		public Category Category { get; set; }
 	}
 }

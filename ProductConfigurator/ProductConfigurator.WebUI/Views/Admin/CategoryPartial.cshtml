@@ -1,22 +1,22 @@
 ﻿@model IEnumerable<ProductConfigurator.WebUI.Models.CategoryViewModel>
 
 @{
-	ViewBag.CategoryList = new SelectList(Model, "Id", "Name");
 	
 }
 
 <div class="span6 center">
-	@Html.DropDownList("CategoryList")
+	@Html.DropDownList("CategoryList", Model.Select(x=> new SelectListItem { Text=x.Name, Value=x.Id.ToString() }), "Choose category ...")
+
 </div>
 
 <div class="span6 center">
 
 @using (Html.BeginForm("AddCategory", "Admin"))
 {
-
+	@Html.Hidden("productId")
 	@Html.TextBox("name", null, new { @placeholder = "Category Name" })
 	<br />
-	<input type="submit" value="New Category" />
+	<input type="submit" id="newCat" value="New Category" />
 }
 
 </div>

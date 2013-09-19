@@ -35,19 +35,38 @@ namespace ProductConfigurator.Services.Service
 			return _productRepo.GetProduct(id);
 		}
 
-        public void SavePart(Part part, int categoryId)
+        public void SavePart(Part part)
         {
-            _productRepo.SavePart(part, categoryId);
+            _productRepo.SavePart(part);
         }
 
-        public Part GetPartByCode(string code)
+        public Part GetPartById(int id)
         {
-            throw new NotImplementedException();
+			return _productRepo.GetPartById(id);
         }
 
-        public void SaveCategory(Category category, int productId)
+        public void SaveCategory(Category category)
         {
-            _productRepo.SaveCategory(category, productId);
+            _productRepo.SaveCategory(category);
         }
-    }
+
+
+		public IEnumerable<Part> GetPartsByCategoryId(int categoryId)
+		{
+			return _productRepo.GetPartsByCategoryId(categoryId);
+		}
+
+
+		public void SavePartRelation(Part one, Part two)
+		{
+			var comp = new PartCompatibility() { PartOne = one, PartTwo = two };
+			_productRepo.SavePartRelation(comp);
+		}
+
+
+		public IQueryable<PartCompatibility> GetRelations(int partId)
+		{
+			return _productRepo.GetRelations(partId);
+		}
+	}
 }

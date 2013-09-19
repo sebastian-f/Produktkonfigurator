@@ -1,12 +1,11 @@
 ﻿@model IEnumerable<ProductConfigurator.WebUI.Models.ProductViewModel>
 
 @{
-	ViewBag.ProductList = new SelectList(Model, "Id", "Name");
 	
 }
 
 <div class="span6 center">
-	@Html.DropDownList("ProductList")
+	@Html.DropDownList("ProductList", Model.Select(x=> new SelectListItem { Text=x.Name, Value=x.Id.ToString() }), "Choose Product ...")
 </div>
 
 <div class="span6 center">

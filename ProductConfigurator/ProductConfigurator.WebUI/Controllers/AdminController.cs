@@ -27,10 +27,7 @@ namespace ProductConfigurator.WebUI.Controllers
 
 		public ActionResult ProductPartial()
 		{
-			var productViewModel = _productService.GetAll().MapTo(new List<ProductViewModel>());
-
-			productViewModel.Add(new ProductViewModel() { Id = 1, Name = "prod" });
-			productViewModel.Add(new ProductViewModel() { Id = 2, Name = "prod2" });
+			var productViewModel = _productService.GetAll().MapToList(new List<ProductViewModel>());
 			return View(productViewModel);
 		}
 
@@ -39,26 +36,60 @@ namespace ProductConfigurator.WebUI.Controllers
 			var product = new ProductViewModel() { Name = name };
 
 			_productService.SaveProduct(product.MapTo(new Domain.Model.Product()));
-			return View();
+			return RedirectToAction("Index");
 		}
 
 		public ActionResult CategoryPartial(int id)
 		{
-			//var productViewModel = _productService.GetById(productId).MapTo(new List<CategoryViewModel>());
+			var categoryViewModel = _productService.GetById(id).Category.MapToList(new List<CategoryViewModel>());
 
-			var productViewModel = new List<CategoryViewModel>();
-			productViewModel.Add(new CategoryViewModel() { Id = 1, Name = "category" });
-			return View(productViewModel);
+			return View(categoryViewModel);
 		}
 
-		public ActionResult AddCategory(string name)
+		public ActionResult AddCategory(string name, int productId)
 		{
-			var category = new CategoryViewModel() { Name = name };
+			var category = new CategoryViewModel() { Name = name, ProductId = productId };
 
 			_productService.SaveCategory(category.MapTo(new Domain.Model.Category()));
-			return View();
+			return RedirectToAction("Index");
 		}
 
+		public ActionResult PartPartial(int id)
+		{
+			var partViewModel = _productService.GetPartsByCategoryId(id).MapToList(new List<PartViewModel>());
 
+			return View(partViewModel);
+		}
+
+		public ActionResult AddPart(PartViewModel part, int categoryId)
+		{
+			//var part = new PartViewModel() { Name = name, CategoryId = categoryId };
+
+			part.CategoryId = categoryId;
+			part.DeliveryDate = new DateTime(2014, 1, 1);
+
+			_productService.SavePart(part.MapTo(new Domain.Model.Part()));
+			return RedirectToAction("Index");
+		}
+
+		public ActionResult PartDetailsPartial(int id)
+		{
+			var parts  = _productService.GetPartsByCategoryId(_productService.GetPartById(id).CategoryId);
+			
+			return View(parts.MapToList(new List<PartViewModel>()));
+		}
+
+		public ActionResult AddRelation(int oneId, int twoId)
+		{
+			var one = _productService.GetPartById(oneId);
+			var two = _productService.GetPartById(twoId);
+
+			var partone = one.MapTo(new Domain.Model.Part());
+			var parttwo = two.MapTo(new Domain.Model.Part());
+
+			_productService.SavePartRelation(partone, parttwo);
+			
+			return RedirectToAction("Index");		
+		}
     }
 }

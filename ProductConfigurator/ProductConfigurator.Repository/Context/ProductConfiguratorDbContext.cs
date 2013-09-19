@@ -17,6 +17,7 @@ namespace ProductConfigurator.Repository.Context
 			//{
 				try
 				{
+
 					Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ProductConfiguratorDbContext>());
 					this.Database.Initialize(true);
 					
@@ -37,6 +38,8 @@ namespace ProductConfigurator.Repository.Context
 					throw new NullReferenceException("",ex);
 				}
 			//}
+
+
 		}
 
 		public DbSet<User> Users { get; set; }
@@ -44,5 +47,7 @@ namespace ProductConfigurator.Repository.Context
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Category> Categorys { get; set; }
 		public DbSet<Part> Parts { get; set; }
+		public DbSet<PartCompatibility> PartCompatibilitys { get; set; }
+		
 	}
 }

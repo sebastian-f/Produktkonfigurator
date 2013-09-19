@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ProductConfigurator.WebUI.Models.PartViewModel>
+
+@{
+	
+}
+
+
+
+
+<div class="span6 center">
+	@Html.DropDownList("PartList", Model.Select(x=> new SelectListItem { Text=x.Name, Value=x.Id.ToString() }), "Choose part ...")
+
+	<br />
+	<div id="PartDetails">
+
+
+	</div>	
+</div>
+	
+<div class="span6 center">
+
+		@using (Html.BeginForm("AddPart", "Admin"))
+{
+	@Html.Hidden("categoryId")
+	@Html.TextBox("Name", null, new { @placeholder = "Part Name" })
+	<br />
+	 @Html.TextBox("Price", null, new { @placeholder = "Price" })
+	 <br />
+	 @Html.TextBox("DeliveryDate", null, new { @placeholder = "Delivery Date" })
+	 <br />
+	 @Html.TextBox("Code", null, new { @placeholder = "Part Code" })
+	 <br />
+	<input type="submit" id="newCat" value="New Part" />
+}
+
+</div>
+

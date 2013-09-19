@@ -15,10 +15,13 @@ namespace ProductConfigurator.Domain.Infrastructure
 
 		
 		IQueryable<Part> GetPartsByCategoryId(int categoryId);
-        void SavePart(Part part, int categoryId);
-		Part GetPartByCode(string code);
+        void SavePart(Part part);
+		Part GetPartById(int id);
 
-		void SaveCategory(Category category, int productId);
+		void SavePartRelation(PartCompatibility comp);
+		IQueryable<PartCompatibility> GetRelations(int partId);
+
+		void SaveCategory(Category category);
 
         
 	}

@@ -1,0 +1,9 @@
+﻿@model List<ProductConfigurator.WebUI.Models.PartViewModel>
+
+
+@foreach (var item in Model)
+{
+	@item.Name
+	<input type="checkbox" value="@item.Id" />
+	<br />
+}

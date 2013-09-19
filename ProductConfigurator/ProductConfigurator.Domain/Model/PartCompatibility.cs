@@ -7,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace ProductConfigurator.Domain.Model
 {
-	public class Category
+	public class PartCompatibility
 	{
 		public int Id { get; set; }
-		public string Name { get; set; }
-		public List<Part> Parts { get; set; }
 
-		[ForeignKey("Product")]
-		public int ProductId { get; set; }
+		public Part PartOne { get; set; }
 
-		[ForeignKey("ProductId")]
-		public Product Product { get; set; }
+		public Part PartTwo { get; set; }
 	}
 }
