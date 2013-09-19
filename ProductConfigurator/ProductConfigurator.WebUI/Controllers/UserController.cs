@@ -23,6 +23,23 @@ namespace ProductConfigurator.WebUI.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Index(FormCollection form)
+        {
+            Product product = _productService.GetById(int.Parse(form[0]));
+            OrderViewModel model = new OrderViewModel();
+            model.ProductName = product.Name;
+            //var productId = form[0];
+            //var productName = form.Keys[0];
+            for (int i = 1; i < form.AllKeys.Count(); i++)
+            {
+                
+                var partId = form[i];
+            }
+
+            return View();
+        }
+
         public ActionResult ProductPartial()
         {
             //IEnumerable<ProductViewModel> model = _productService.GetAll().MapToList(new List<ProductViewModel>());
@@ -36,15 +53,17 @@ namespace ProductConfigurator.WebUI.Controllers
 
         public ActionResult CategoryPartial()
         {
-            var product = _productService.GetById(1);
-            var categories = product.Category;
-
-            Category cat = new Category { Name = "TEST" };
-
-            //_productService.SaveCategory(cat);
-
-
+            //List<CategoryPartsViewModel> list = new List<CategoryPartsViewModel>();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult CategoryPartial(int productId = 0)
+        {
+            //HÄMTA ALLA KATEGORIER SOM HÖR TILL DENNA PRODUKTID
+            var product = _productService.GetById(productId);
+            IEnumerable<CategoryPartsViewModel> model = product.Category.MapToList(new List<CategoryPartsViewModel>());
+            return View(model);
         }
 
     }
