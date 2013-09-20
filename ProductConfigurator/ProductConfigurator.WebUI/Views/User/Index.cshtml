@@ -5,5 +5,19 @@
 
 <h2>Index</h2>
 
+@using (Html.BeginForm()) { 
 @{Html.RenderAction("ProductPartial", "User");}
+    <div id="categortPartial">
 @{Html.RenderAction("CategoryPartial", "User");}
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('select').change(selectChange);
+        });
+
+        function selectChange() {
+            var select = $(this).
+        }
+
+    </script>
+}
