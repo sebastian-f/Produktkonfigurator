@@ -87,7 +87,6 @@ namespace ProductConfigurator.Repository
 				else
 					_context.PartCompatibilitys.Remove(_context.PartCompatibilitys.SingleOrDefault(x => (x.PartOne.Id == oneid && x.PartTwo.Id == twoid.FirstOrDefault()) || (x.PartOne.Id == twoid.FirstOrDefault() && x.PartTwo.Id == oneid)));
 			}
-			
 			_context.SaveChanges();
 		}
 

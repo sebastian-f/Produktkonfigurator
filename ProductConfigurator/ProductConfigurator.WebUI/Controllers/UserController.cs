@@ -26,16 +26,6 @@ namespace ProductConfigurator.WebUI.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection form)
         {
-            Product product = _productService.GetById(int.Parse(form[0]));
-            OrderViewModel model = new OrderViewModel();
-            model.ProductName = product.Name;
-            //var productId = form[0];
-            //var productName = form.Keys[0];
-            for (int i = 1; i < form.AllKeys.Count(); i++)
-            {
-                
-                var partId = form[i];
-            }
 
             return View();
         }

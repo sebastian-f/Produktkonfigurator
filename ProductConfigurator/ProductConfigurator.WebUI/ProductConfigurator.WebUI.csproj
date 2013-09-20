@@ -151,6 +151,7 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="Script\datepickr.js" />
     <Content Include="Script\JavaScript1.js" />
     <Content Include="Script\jquery-1.9.1.min.js" />
     <Content Include="Style\StyleSheet1.css" />

@@ -1,6 +1,5 @@
 ﻿/// <reference path="jquery-1.9.1.min.js" />
 
-
 $(function () {
 
 	ajax("#Product", "Admin/ProductPartial");
@@ -25,15 +24,12 @@ $(function () {
 	
 			$('#categoryId').val($('#CategoryList :selected').val());
 
-
 			$('#PartList').change(function () {
 				var partId = $('#PartList :selected').val();
 
 				ajax("#PartDetails", "Admin/PartDetailsPartial", partId);
 
 				$('#partId').val($('#PartList :selected').val());
-
-
 				
 				$(".box").click(function () {
 					var list = new Array();
@@ -59,10 +55,6 @@ $(function () {
 			});
 		});
 	});
-
-
-	
-
 });
 
 

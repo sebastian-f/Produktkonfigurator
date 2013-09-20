@@ -66,7 +66,7 @@ namespace ProductConfigurator.WebUI.Controllers
 			//var part = new PartViewModel() { Name = name, CategoryId = categoryId };
 
 			part.CategoryId = categoryId;
-			part.DeliveryDate = new DateTime(2014, 1, 1);
+
 
 			_productService.SavePart(part.MapTo(new Domain.Model.Part()));
 			return RedirectToAction("Index");
