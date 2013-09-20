@@ -8,7 +8,7 @@ namespace ProductConfigurator.WebUI.Models
     public class OrderViewModel
     {
         public string ProductName { get; set; }
-        IList<OrderCategoryPartViewModel> CategoryParts { get; set; }
+        public IList<OrderCategoryPartViewModel> CategoryParts { get; set; }
         public DateTime DeliveryDate { get; set; }
     }
 

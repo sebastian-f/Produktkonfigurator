@@ -33,10 +33,15 @@ namespace ProductConfigurator.WebUI.Controllers
             //var productName = form.Keys[0];
             for (int i = 1; i < form.AllKeys.Count(); i++)
             {
-                
-                var partId = form[i];
+                Part part = _productService.GetPartById(int.Parse(form[i]));
+                foreach (var item in model.CategoryParts)
+	            {
+                    item.CategoryName = form.Keys[i];
+                    item.PartName = part.Name;
+	            }
             }
 
+            //Redirecta till en Order Actionresult, skicka med modellen och visa upp en bekräftelse på skärmen.
             return View();
         }
 
