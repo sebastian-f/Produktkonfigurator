@@ -57,16 +57,22 @@ namespace ProductConfigurator.Services.Service
 		}
 
 
-		public void SavePartRelation(Part one, Part two)
+		public void SavePartRelation(int one, List<int> two)
 		{
-			var comp = new PartCompatibility() { PartOne = one, PartTwo = two };
-			_productRepo.SavePartRelation(comp);
+			//var comp = new PartCompatibility() { PartOne = one, PartTwo = two };
+			_productRepo.SavePartRelation(one, two);
 		}
 
 
 		public IQueryable<PartCompatibility> GetRelations(int partId)
 		{
 			return _productRepo.GetRelations(partId);
+		}
+
+
+		public bool HasRelations(int partId, int compareTo)
+		{
+			return _productRepo.HasRelations(partId, compareTo);
 		}
 	}
 }

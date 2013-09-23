@@ -10,6 +10,7 @@ namespace ProductConfigurator.WebUI.Models
         public string ProductName { get; set; }
         public IList<OrderCategoryPartViewModel> CategoryParts { get; set; }
         public DateTime DeliveryDate { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 
     public class OrderCategoryPartViewModel

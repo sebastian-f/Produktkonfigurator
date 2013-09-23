@@ -5,7 +5,7 @@
 }
 
 <div class="span6 center">
-	@Html.DropDownList("CategoryList", Model.Select(x=> new SelectListItem { Text=x.Name, Value=x.Id.ToString() }), "Choose category ...")
+	@Html.DropDownList("CategoryList", Model.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = false }), "Choose category ...")
 
 </div>
 

@@ -8,7 +8,7 @@
 
 
 <div class="span6 center">
-	@Html.DropDownList("PartList", Model.Select(x=> new SelectListItem { Text=x.Name, Value=x.Id.ToString() }), "Choose part ...")
+	@Html.DropDownList("PartList", Model.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = false }), "Choose part ...")
 
 	<br />
 	<div id="PartDetails">

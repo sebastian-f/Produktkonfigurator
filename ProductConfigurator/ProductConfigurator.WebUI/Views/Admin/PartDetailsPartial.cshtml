@@ -1,9 +1,14 @@
 ﻿@model List<ProductConfigurator.WebUI.Models.PartViewModel>
 
 
-@foreach (var item in Model)
+@using(Html.BeginForm())
 {
-	@item.Name
-	<input type="checkbox" value="@item.Id" />
-	<br />
+	foreach (var item in Model)
+	{
+		@item.Name
+
+	
+		<input class="box" type="checkbox" checked="@item.Checked" value="@item.Id" />
+		<br />
+	}
 }

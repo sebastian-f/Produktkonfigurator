@@ -74,22 +74,28 @@ namespace ProductConfigurator.WebUI.Controllers
 
 		public ActionResult PartDetailsPartial(int id)
 		{
-			var parts  = _productService.GetPartsByCategoryId(_productService.GetPartById(id).CategoryId);
-			
-			return View(parts.MapToList(new List<PartViewModel>()));
+			var parts = _productService.GetPartsByCategoryId(_productService.GetPartById(id).CategoryId).MapToList(new List<PartViewModel>());
+            
+			foreach (var part in parts)
+			{
+				var hasRelation = _productService.HasRelations(id, part.Id);
+
+				//Response.Write(_productService.GetPartById(id).Name + " " + part.Name + " " + b + "</br>");
+
+				part.Checked = hasRelation;
+
+			}
+
+			return View(parts);
 		}
 
-		public ActionResult AddRelation(int oneId, int twoId)
+		public ActionResult AddRelation(int oneId, int[] twoId)
 		{
-			var one = _productService.GetPartById(oneId);
-			var two = _productService.GetPartById(twoId);
 
-			var partone = one.MapTo(new Domain.Model.Part());
-			var parttwo = two.MapTo(new Domain.Model.Part());
-
-			_productService.SavePartRelation(partone, parttwo);
+			_productService.SavePartRelation(oneId, twoId.ToList());
 			
-			return RedirectToAction("Index");		
+
+			return RedirectToAction("Index");
 		}
     }
 }

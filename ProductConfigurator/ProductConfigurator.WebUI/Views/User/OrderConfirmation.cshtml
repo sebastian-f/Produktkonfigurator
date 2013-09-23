@@ -1,0 +1,41 @@
+﻿@model ProductConfigurator.WebUI.Models.OrderViewModel
+
+@{
+    ViewBag.Title = "OrderConfirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>OrderConfirmation</h2>
+
+<fieldset>
+    <legend>OrderViewModel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DeliveryDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeliveryDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalPrice)
+    </div>
+    <br />
+    <div>Components:</div>
+    @foreach (var item in Model.CategoryParts)
+    {
+        <div class="display-field">
+            @item.CategoryName : @item.PartName
+        </div>
+    }
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -16,8 +16,8 @@ namespace ProductConfigurator.Services.Interface
         Part GetPartById(int id);
 		IEnumerable<Part> GetPartsByCategoryId(int categoryId);
         void SaveCategory(Category category);
-		void SavePartRelation(Part one, Part two);
+		void SavePartRelation(int one, List<int> two);
 		IQueryable<PartCompatibility> GetRelations(int partId);
-        
+		bool HasRelations(int partId, int compareTo);
 	}
 }

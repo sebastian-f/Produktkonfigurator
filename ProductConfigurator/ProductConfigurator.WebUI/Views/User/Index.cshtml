@@ -5,12 +5,12 @@
 
 
 <h2>Index</h2>
-@using(Html.BeginForm())
-    {
-{Html.RenderAction("ProductPartial", "User");}
+@using(Html.BeginForm("OrderConfirmation", "User"))
+{
+    {Html.RenderAction("ProductPartial", "User");}
 
-<div id="categoryPartial">
-@{Html.RenderAction("CategoryPartial", "User");}
+    <div id="categoryPartial">
+        @{Html.RenderAction("CategoryPartial", "User");}
     </div>
     
 }
@@ -22,12 +22,11 @@
     });
 
     function Submit() {
-        $('form').submit();
+        $("form").submit();
     }
 
     function selectChange()
     {
-        debugger;
         var select = $(this).attr("name")
         var id = $(this).val();
         if (select == "Product" && id != "") {
