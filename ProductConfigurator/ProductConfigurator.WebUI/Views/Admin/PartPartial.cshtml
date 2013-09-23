@@ -4,10 +4,16 @@
 	
 }
 
+<script>
+
+	//new datepickr('DeliveryDate');
+	new datepickr('DeliveryDate', {
+		'dateFormat': '20y-m-d'
+	});
+</script>
 
 
-
-<div class="span6 center">
+<div class="span6 center" style="margin-left:0px">
 	@Html.DropDownList("PartList", Model.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = false }), "Choose part ...")
 
 	<br />
@@ -17,7 +23,7 @@
 	</div>	
 </div>
 	
-<div class="span6 center">
+<div class="span6 center" style="position:absolute;margin:300px 0 0 320px">
 
 		@using (Html.BeginForm("AddPart", "Admin"))
 {

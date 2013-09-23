@@ -155,6 +155,7 @@
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Script\datepickr.js" />
     <Content Include="Script\JavaScript1.js" />
     <Content Include="Style\StyleSheet1.css" />
     <Content Include="Web.config">

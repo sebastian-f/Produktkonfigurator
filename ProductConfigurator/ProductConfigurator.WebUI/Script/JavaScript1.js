@@ -1,6 +1,5 @@
 ﻿/// <reference path="jquery-1.9.1.min.js" />
 
-
 $(function () {
 
 	ajax("#Product", "Admin/ProductPartial");
@@ -25,15 +24,12 @@ $(function () {
 	
 			$('#categoryId').val($('#CategoryList :selected').val());
 
-
 			$('#PartList').change(function () {
 				var partId = $('#PartList :selected').val();
 
-				ajax("#PartDetails", "Admin/PartDetailsPartial", partId);
+				ajaxPartDetailsPartial("#PartDetails", productId, partId);
 
 				$('#partId').val($('#PartList :selected').val());
-
-
 				
 				$(".box").click(function () {
 					var list = new Array();
@@ -59,10 +55,6 @@ $(function () {
 			});
 		});
 	});
-
-
-	
-
 });
 
 
@@ -80,7 +72,7 @@ function SaveRels(idList) {
 			async: true,
 			//data: { oneId: productId, twoId: idList },
 			success: function (result) {
-				//alert("success");
+				alert("success");
 			},
 			error: function (xhr, status) {
 				alert(status);
@@ -110,6 +102,26 @@ function SaveObj(name, path) {
 	
 }
 */
+
+
+
+function ajaxPartDetailsPartial(pos, id, partId) {
+	var baseUrl = "http://" + location.host + "/Admin/PartDetailsPartial?productId=" + id + "&partId=" + partId;
+
+	$.ajax({
+		type: "GET",
+		url: baseUrl,
+		async: false,
+		success: function (result) {
+			$(pos).html(result);
+		},
+		error: function (xhr, status) {
+			//alert(status);
+		}
+	});
+}
+
+
 function ajax(pos, path, id) {
 	var baseUrl = "http://" + location.host + "/" + path + "/" + id;
 	

@@ -15,6 +15,7 @@ namespace ProductConfigurator.Services.Interface
         void SavePart(Part part);
         Part GetPartById(int id);
 		IEnumerable<Part> GetPartsByCategoryId(int categoryId);
+		IEnumerable<Part> GetPartsFromCategorysExceptThisPartCategory(int productId, int partId);
         void SaveCategory(Category category);
 		void SavePartRelation(int one, List<int> two);
 		IQueryable<PartCompatibility> GetRelations(int partId);

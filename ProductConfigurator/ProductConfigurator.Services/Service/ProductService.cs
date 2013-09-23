@@ -50,7 +50,6 @@ namespace ProductConfigurator.Services.Service
             _productRepo.SaveCategory(category);
         }
 
-
 		public IEnumerable<Part> GetPartsByCategoryId(int categoryId)
 		{
 			return _productRepo.GetPartsByCategoryId(categoryId);
@@ -73,6 +72,25 @@ namespace ProductConfigurator.Services.Service
 		public bool HasRelations(int partId, int compareTo)
 		{
 			return _productRepo.HasRelations(partId, compareTo);
+		}
+
+
+		public IEnumerable<Part> GetPartsFromCategorysExceptThisPartCategory(int productId, int partId)
+		{
+			var parts = new List<Part>();
+
+			var part = GetPartById(partId);
+			foreach (var cat in GetById(productId).Category)
+			{
+				if (cat.Id != part.CategoryId)
+				{
+					foreach (var __part in cat.Parts)
+					{
+						parts.Add(__part);
+					}
+				}
+			}
+			return parts;
 		}
 	}
 }

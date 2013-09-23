@@ -20,8 +20,7 @@ namespace ProductConfigurator.Repository
 
 		public Domain.Model.Product GetProduct(int id)
 		{
-			return _context.Products.Include(y=>y.Category.Select(c=>c.Parts)).SingleOrDefault(x => x.Id == id);
-		}
+			return _context.Products.Include(y=>y.Category).SingleOrDefault(x => x.Id == id);		}
 
 		public IQueryable<Domain.Model.Product> GetAllProducts()
 		{
@@ -87,7 +86,6 @@ namespace ProductConfigurator.Repository
 				else
 					_context.PartCompatibilitys.Remove(_context.PartCompatibilitys.SingleOrDefault(x => (x.PartOne.Id == oneid && x.PartTwo.Id == twoid.FirstOrDefault()) || (x.PartOne.Id == twoid.FirstOrDefault() && x.PartTwo.Id == oneid)));
 			}
-			
 			_context.SaveChanges();
 		}
 
