@@ -24,6 +24,8 @@
 		@Html.ActionLink("Login", "Login", "Account")
 		<br />
 		@Html.ActionLink("Create Account", "CreateAccount", "Account")
+	  <br />
+		@Html.ActionLink("Forgot Password", "ForgotPassword", "Account")
 		<br />
   }
 		else
@@ -31,6 +33,8 @@
 		@:Welcome, @User.Identity.Name
 		<br />
 		@Html.ActionLink("Logout", "Logout", "Account")
+	  <br />
+		@Html.ActionLink("Change Parrword", "ChangePass", "Account")
   }
 		
 	</div>

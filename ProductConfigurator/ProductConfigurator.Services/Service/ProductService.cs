@@ -55,13 +55,11 @@ namespace ProductConfigurator.Services.Service
 			return _productRepo.GetPartsByCategoryId(categoryId);
 		}
 
-
 		public void SavePartRelation(int one, List<int> two)
 		{
 			//var comp = new PartCompatibility() { PartOne = one, PartTwo = two };
 			_productRepo.SavePartRelation(one, two);
 		}
-
 
 		public IQueryable<PartCompatibility> GetRelations(int partId)
 		{
@@ -90,7 +88,6 @@ namespace ProductConfigurator.Services.Service
 					}
 				}
 			}
-
 			return parts;
 		}
 	}
