@@ -20,38 +20,16 @@ namespace ProductConfigurator.Repository
 
 		public Domain.Model.Product GetProduct(int id)
 		{
-			return _context.Products.Include(y=>y.Category).SingleOrDefault(x => x.Id == id);		}
+			return _context.Products.Include(y => y.Category.Select(z => z.Parts)).SingleOrDefault(x => x.Id == id);
+		}
 
 		public IQueryable<Domain.Model.Product> GetAllProducts()
 		{
-			return _context.Products.Include(x=>x.Category);
+			return _context.Products.Include(x=>x.Category.Select(y=>y.Parts));
 		}
 
 		public void SavePart(Domain.Model.Part part)
 		{
-			/*
-			Domain.Model.Part part2 = new Domain.Model.Part
-			{
-				Name = "part3",
-				Price = 15,
-				CategoryId = 1,
-				DeliveryDate = DateTime.Now,
-				Code = "AB",
-				CompatibleParts =
-					new List<Domain.Model>
-				{ 
-					new Domain.Model.Part
-					{ 
-						Name="part93", Price=15, CategoryId=1, DeliveryDate=DateTime.Now, Code="AB" 
-					}, 
-					new Domain.Model.Part
-					{ 
-						Name="part40", Price=15, CategoryId=1, DeliveryDate=DateTime.Now, Code="AB" 
-					}
-				}
-			};
-
-			*/
 			_context.Parts.Add(part);
             _context.SaveChanges();
 		}

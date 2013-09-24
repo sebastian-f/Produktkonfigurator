@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ChangePass</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("ChangePass", "Account"))
+{
+		@Html.ValidationSummary(true)
+
+		@Html.Label("Old Password")
+		@Html.Password("oldpassword")
+		@Html.ValidationMessage("oldpassword")
+			<br />
+
+		@Html.Label("New Password")
+		@Html.Password("newpassword1")
+		@Html.ValidationMessage("newpassword1")
+			<br />
+		@Html.Label("Repeat New Password")
+		@Html.Password("newpassword2")
+		@Html.ValidationMessage("newpassword2")
+		
+	<br />
+		<input type="submit" class="btn" value="Change password" />
+}
+    </div>
+</body>
+</html>
