@@ -1,4 +1,5 @@
 ﻿using ProductConfigurator.Domain.Infrastructure;
+using ProductConfigurator.Domain.Model;
 using ProductConfigurator.Repository.Context;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,14 @@ namespace ProductConfigurator.Repository
     {
         private ProductConfiguratorDbContext _context = new ProductConfiguratorDbContext();
 
-        public void SaveOrder(Domain.Model.Order order)
+        public void SaveOrder(Domain.Model.Order order, List<Part> partList)
         {
             _context.Orders.Add(order);
+            foreach (var item in partList)
+            {
+                _context.Parts.Attach(item);
+            }
+            order.Parts = partList;
             _context.SaveChanges();
         }
 

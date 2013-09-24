@@ -8,9 +8,11 @@ namespace ProductConfigurator.WebUI.Models
     public class OrderViewModel
     {
         public string ProductName { get; set; }
+        public int ProductId { get; set; }
         public IList<OrderCategoryPartViewModel> CategoryParts { get; set; }
         public DateTime DeliveryDate { get; set; }
         public decimal TotalPrice { get; set; }
+        
     }
 
     public class OrderCategoryPartViewModel
@@ -20,5 +22,6 @@ namespace ProductConfigurator.WebUI.Models
         public string PartName { get; set; }
         public decimal PartPrice { get; set; }
         public string PartCode { get; set; }
+        public DateTime DeliveryDate { get; set; }
     }
 }

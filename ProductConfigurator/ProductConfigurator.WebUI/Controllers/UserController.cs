@@ -32,6 +32,7 @@ namespace ProductConfigurator.WebUI.Controllers
             Product product = _productService.GetById(int.Parse(form[0]));
             OrderViewModel model = new OrderViewModel();
             model.ProductName = product.Name;
+            model.ProductId = product.Id;
             model.CategoryParts = new List<OrderCategoryPartViewModel>();
             //var productId = form[0];
             //var productName = form.Keys[0];
@@ -44,25 +45,29 @@ namespace ProductConfigurator.WebUI.Controllers
                 item.PartPrice = part.Price;
                 item.PartCode = part.Code;
                 item.PartId = part.Id;
+                item.DeliveryDate = part.DeliveryDate;
                 model.CategoryParts.Add(item);
             }
             model.TotalPrice = model.CategoryParts.Sum(x => x.PartPrice);
+            model.DeliveryDate = model.CategoryParts.Max(x => x.DeliveryDate);
             return View(model);
 
         }
 
-        public ActionResult CreateOrder(OrderViewModel model, string ProductName)
+        public ActionResult CreateOrder(OrderViewModel model)
         {
-            string test = Request.Form["ProductName"];
             Order order = new Order();
             order.Price = model.TotalPrice;
-            order.Parts = new List<Part>();
+            List<Part> partList = new List<Part>();
+            order.DeliveryDate = model.DeliveryDate;
+            
             foreach (var item in model.CategoryParts)
             {
                 Part p = _productService.GetPartById(item.PartId);
-                order.Parts.Add(p);
+                
+                partList.Add(p);
             }
-            _orderService.Save(order);
+            _orderService.Save(order, partList);
             return View();
         }
 
@@ -84,12 +89,19 @@ namespace ProductConfigurator.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CategoryPartial(int productId = 0)
+        public ActionResult CategoryPartial(int productId)
         {
             //HÄMTA ALLA KATEGORIER SOM HÖR TILL DENNA PRODUKTID
             var product = _productService.GetById(productId);
+            
             IEnumerable<CategoryPartsViewModel> model = product.Category.MapToList(new List<CategoryPartsViewModel>());
             return View(model);
+        }
+
+        public ActionResult GetRelations(int categoryId, int partId)
+        {
+            //Hämta relationer och uppdatera selectboxarna i Index.cshtml
+            return null;
         }
 
     }

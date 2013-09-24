@@ -37,14 +37,32 @@
                 success: function (data) {
                     $("#categoryPartial").html(data);
                     $('#btnSubmit').click(Submit);
+                    $('select').change(selectChange);
                 },
                 error: function () {
                     alert("error");
                 }
             });
         }
-        else
+
+        else if(select == "Product" && id == "")
             $("#categoryPartial").html("");
+
+        else if (select != "Product" && id != "")
+        {
+            $.ajax({
+                url: '@Url.Action("GetRelations", "User")',
+                data: { 'partId': $(this).val(), 'categoryId': select },
+                type: "post",
+                success: function (data) {
+                    alert("success");
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        }
+
         
     }
 </script>

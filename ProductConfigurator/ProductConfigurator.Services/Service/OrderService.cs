@@ -1,4 +1,5 @@
 ﻿using ProductConfigurator.Domain.Infrastructure;
+using ProductConfigurator.Domain.Model;
 using ProductConfigurator.Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,9 @@ namespace ProductConfigurator.Services.Service
             this._orderRepo = orderRepo;
 		}
 
-        public void Save(Domain.Model.Order order)
+        public void Save(Domain.Model.Order order, List<Part> partList)
         {
-            _orderRepo.SaveOrder(order);
+            _orderRepo.SaveOrder(order, partList);
         }
 
         public Domain.Model.Order Get(int id)
