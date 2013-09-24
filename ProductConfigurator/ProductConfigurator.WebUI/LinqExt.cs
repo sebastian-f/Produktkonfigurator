@@ -18,6 +18,8 @@ namespace ProductConfigurator.WebUI
 
         public static IEnumerable<U> MapToList<T, U>(this IEnumerable<T> model, IEnumerable<U> mapTo)
         {
+            AutoMapper.Mapper.CreateMap<ProductConfigurator.Domain.Model.Part,PartViewModel>();
+            AutoMapper.Mapper.CreateMap<IEnumerable<ProductConfigurator.Domain.Model.Part>, IEnumerable<CategoryPartsViewModel>>();
             AutoMapper.Mapper.CreateMap<T, U>();
             var mappedTo = AutoMapper.Mapper.Map<IEnumerable<T>, IEnumerable<U>>(model);
             return mappedTo;
