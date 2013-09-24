@@ -16,6 +16,7 @@ namespace ProductConfigurator.WebUI.Models
     public class OrderCategoryPartViewModel
     {
         public string CategoryName { get; set; }
+        public int PartId { get; set; }
         public string PartName { get; set; }
         public decimal PartPrice { get; set; }
         public string PartCode { get; set; }

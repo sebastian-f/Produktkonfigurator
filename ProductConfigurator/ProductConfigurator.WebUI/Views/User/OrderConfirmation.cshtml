@@ -7,16 +7,20 @@
 
 <h2>OrderConfirmation</h2>
 
+@using (Html.BeginForm("CreateOrder", "User"))
+    {
 <fieldset>
     <legend>OrderViewModel</legend>
+    
+        @Html.TextBoxFor(model => model.ProductName)
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.ProductName)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.ProductName)
+        
     </div>
-
+        
     <div class="display-label">
          @Html.DisplayNameFor(model => model.DeliveryDate)
     </div>
@@ -26,16 +30,20 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.TotalPrice)
     </div>
+        @Html.HiddenFor(model => model.TotalPrice)
     <br />
     <div>Components:</div>
     @foreach (var item in Model.CategoryParts)
     {
         <div class="display-field">
+
             @item.CategoryName : @item.PartName
         </div>
     }
+   
 </fieldset>
+    }
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Confirm", "CreateOrder", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to configuration", "Index")
 </p>

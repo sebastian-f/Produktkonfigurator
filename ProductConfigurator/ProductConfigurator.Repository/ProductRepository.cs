@@ -20,11 +20,13 @@ namespace ProductConfigurator.Repository
 
 		public Domain.Model.Product GetProduct(int id)
 		{
-			return _context.Products.Include(y=>y.Category).SingleOrDefault(x => x.Id == id);		}
+			return _context.Products.Include(y=>y.Category.Select(c=>c.Parts)).SingleOrDefault(x => x.Id == id);
+            //return _context.Products.Include(y => y.Category.Select(z => z.Parts)).SingleOrDefault(x => x.Id == id);
+        }
 
 		public IQueryable<Domain.Model.Product> GetAllProducts()
 		{
-			return _context.Products.Include(x=>x.Category);
+			return _context.Products.Include(x=>x.Category.Select(c=>c.Parts));
 		}
 
 		public void SavePart(Domain.Model.Part part)

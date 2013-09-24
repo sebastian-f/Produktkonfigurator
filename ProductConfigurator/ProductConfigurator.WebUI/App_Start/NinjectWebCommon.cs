@@ -63,6 +63,8 @@ namespace ProductConfigurator.WebUI.App_Start
 			kernel.Bind<IUserRepository>().To<UserRepository>();
 			kernel.Bind<IProductService>().To<ProductService>();
 			kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IOrderRepository>().To<OrderRepository>();
+            kernel.Bind<IOrderService>().To<OrderService>();
 
         }        
     }
