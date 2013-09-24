@@ -72,7 +72,6 @@ function SaveRels(idList) {
 			async: true,
 			//data: { oneId: productId, twoId: idList },
 			success: function (result) {
-				alert("success");
 			},
 			error: function (xhr, status) {
 				alert(status);

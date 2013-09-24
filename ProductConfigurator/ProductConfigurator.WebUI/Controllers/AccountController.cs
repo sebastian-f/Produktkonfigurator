@@ -15,10 +15,12 @@ namespace ProductConfigurator.WebUI.Controllers
         // GET: /Account/
 
 		private IUserService _userService;
+		private IMailService _mailService;
 	
-		public AccountController(IUserService userService)
+		public AccountController(IUserService userService, IMailService mailService)
 		{
 			this._userService = userService;
+			this._mailService = mailService;
 		}
 
 		[HttpGet]
@@ -59,7 +61,7 @@ namespace ProductConfigurator.WebUI.Controllers
 			//{
 				try
 				{
-					Membership.CreateUser(user.Username, password);
+					Membership.CreateUser(user.Username, password, user.Email);
 					_userService.CreateUser(user.MapTo(new Domain.Model.User()));
 					return RedirectToAction("Index", "Home");
 				}
@@ -69,6 +71,59 @@ namespace ProductConfigurator.WebUI.Controllers
 				}
 			//}
 			return View(user);
+		}
+
+		public ActionResult ForgotPassword()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult ForgotPassword(string username)
+		{
+			MembershipUser user = Membership.GetUser(username);
+
+			if (user != null)
+			{
+				_mailService.SendMail(user.Email, user.UserName, "change password", "Your new Password is: " + user.ResetPassword());
+				Membership.UpdateUser(user);
+			}
+
+			return RedirectToAction("Login");
+		}
+
+		[Authorize]
+		public ActionResult ChangePass()
+		{
+
+			return View();
+		}
+
+		[HttpPost]
+		[Authorize]
+		public ActionResult ChangePass(string oldpassword, string newpassword1, string newpassword2)
+		{
+			MembershipUser user = Membership.GetUser(this.User.Identity.Name);
+
+			if (newpassword1 == newpassword2)
+			{
+
+				MembershipPasswordAttribute passcheck = new MembershipPasswordAttribute();
+
+				if (passcheck.IsValid(newpassword1))
+				{
+					if (user.ChangePassword(oldpassword, newpassword1))
+						return RedirectToAction("Index", "Home");
+					else
+						ModelState.AddModelError("", "Old pass wrong");
+				}
+				else
+					ModelState.AddModelError("", "You need a stronger password");
+			}
+			else
+				ModelState.AddModelError("", "New passwords dont match");
+
+			return RedirectToAction("Index", "Home");
 		}
 
 		public ActionResult Logout()

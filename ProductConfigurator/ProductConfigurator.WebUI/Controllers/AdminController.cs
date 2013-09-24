@@ -25,9 +25,27 @@ namespace ProductConfigurator.WebUI.Controllers
             return View();
         }
 
+        public ActionResult Orders()
+        {
+            //TODO: GetAllOrders - service
+    
+            List<HandleOrderViewModel> orders = new List<HandleOrderViewModel>();
+            orders.Add(new HandleOrderViewModel { DeliveryDate = DateTime.Now, ProductName = "Hej!", TotalPrice = 5000,Id=1});
+
+            return View(orders);
+        }
+
+        [HttpPost]
+        public ActionResult SendOrder(OrderViewModel order)
+        {
+            //TODO: FINISH
+            return View();
+        }
+
 		public ActionResult ProductPartial()
 		{
 			var productViewModel = _productService.GetAll().MapToList(new List<ProductViewModel>());
+			
 			return View(productViewModel);
 		}
 
@@ -36,6 +54,7 @@ namespace ProductConfigurator.WebUI.Controllers
 			var product = new ProductViewModel() { Name = name };
 
 			_productService.SaveProduct(product.MapTo(new Domain.Model.Product()));
+			
 			return RedirectToAction("Index");
 		}
 
@@ -51,6 +70,7 @@ namespace ProductConfigurator.WebUI.Controllers
 			var category = new CategoryViewModel() { Name = name, ProductId = productId };
 
 			_productService.SaveCategory(category.MapTo(new Domain.Model.Category()));
+			
 			return RedirectToAction("Index");
 		}
 
@@ -63,41 +83,30 @@ namespace ProductConfigurator.WebUI.Controllers
 
 		public ActionResult AddPart(PartViewModel part, int categoryId)
 		{
-			//var part = new PartViewModel() { Name = name, CategoryId = categoryId };
-
 			part.CategoryId = categoryId;
-
-
 			_productService.SavePart(part.MapTo(new Domain.Model.Part()));
+			
 			return RedirectToAction("Index");
 		}
 
 		public ActionResult PartDetailsPartial(int productId, int partId)
 		{
-			//var parts = _productService.GetPartsByProductId(id).MapToList(new List<PartViewModel>());
-
 			var parts = _productService.GetPartsFromCategorysExceptThisPartCategory(productId, partId).MapToList(new List<PartViewModel>());
 			
-			//var parts = _productService.GetPartsByCategoryId(_productService.GetPartById(id).CategoryId).MapToList(new List<PartViewModel>());
 			foreach (var __part in parts)
 			{
 				var hasRelation = _productService.HasRelations(partId, __part.Id);
-
-				//Response.Write(_productService.GetPartById(id).Name + " " + part.Name + " " + b + "</br>");
-
 				__part.Checked = hasRelation;
-
 			}
-
+			
 			return View(parts);
+			
 		}
 
 		public ActionResult AddRelation(int oneId, int[] twoId)
 		{
-
 			_productService.SavePartRelation(oneId, twoId.ToList());
 			
-
 			return RedirectToAction("Index");
 		}
     }

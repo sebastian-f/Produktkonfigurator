@@ -1,0 +1,37 @@
+﻿@model IList<ProductConfigurator.WebUI.Models.HandleOrderViewModel>
+
+    <table>
+        <tr>
+            <th>
+                Order ID
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                Total Price
+            </th>
+            <th>
+                Handle
+            </th>
+            <th>
+                Send
+            </th>
+        </tr>
+
+@foreach (ProductConfigurator.WebUI.Models.HandleOrderViewModel order in Model)
+{
+    <text>
+    <tr>
+        <td>@order.Id</td>
+        <td>Nisse </td>
+        <td>@order.TotalPrice </td>
+        <td>Delete</td>
+        <td><a href="#">Send order</a></td>
+    </tr>
+
+
+    </text>
+}
+
+</table>
