@@ -25,6 +25,23 @@ namespace ProductConfigurator.WebUI.Controllers
             return View();
         }
 
+        public ActionResult Orders()
+        {
+            //TODO: GetAllOrders - service
+    
+            List<HandleOrderViewModel> orders = new List<HandleOrderViewModel>();
+            orders.Add(new HandleOrderViewModel { DeliveryDate = DateTime.Now, ProductName = "Hej!", TotalPrice = 5000,Id=1});
+
+            return View(orders);
+        }
+
+        [HttpPost]
+        public ActionResult SendOrder(OrderViewModel order)
+        {
+            //TODO: FINISH
+            return View();
+        }
+
 		public ActionResult ProductPartial()
 		{
 			var productViewModel = _productService.GetAll().MapToList(new List<ProductViewModel>());
