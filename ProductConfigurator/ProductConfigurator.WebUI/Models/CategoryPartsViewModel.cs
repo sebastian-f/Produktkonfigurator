@@ -11,6 +11,6 @@ namespace ProductConfigurator.WebUI.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int ProductId { get; set; }
-        public IEnumerable<Part> Parts { get; set; }
+        public IEnumerable<PartViewModel> Parts { get; set; }
     }
 }

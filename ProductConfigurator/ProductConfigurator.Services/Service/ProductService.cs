@@ -90,6 +90,7 @@ namespace ProductConfigurator.Services.Service
 					}
 				}
 			}
+
 			return parts;
 		}
 	}
