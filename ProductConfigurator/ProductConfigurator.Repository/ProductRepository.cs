@@ -20,8 +20,7 @@ namespace ProductConfigurator.Repository
 
 		public Domain.Model.Product GetProduct(int id)
 		{
-			return _context.Products.Include(y => y.Category.Select(z => z.Parts)).SingleOrDefault(x => x.Id == id);
-		}
+			return _context.Products.Include(y=>y.Category).SingleOrDefault(x => x.Id == id);		}
 
 		public IQueryable<Domain.Model.Product> GetAllProducts()
 		{
@@ -47,7 +46,7 @@ namespace ProductConfigurator.Repository
 
         public IQueryable<Domain.Model.Part> GetPartsByCategoryId(int categoryId)
         {
-			return _context.Parts.Where(x=>x.CategoryId == categoryId);
+            return _context.Parts.Where(x => x.CategoryId == categoryId);
         }
 
 

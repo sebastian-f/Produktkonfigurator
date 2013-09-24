@@ -1,4 +1,15 @@
-﻿@model IEnumerable<ProductConfigurator.WebUI.Models.CategoryViewModel>
+﻿@model IEnumerable<ProductConfigurator.WebUI.Models.CategoryPartsViewModel>
 
 <div>Vår andra partial!</div>
-
+@if(Model!=null)
+{
+    
+        foreach (var item in Model)
+        {
+            <div>
+                @Html.DropDownList(item.Name, item.Parts.Select(
+                    x=>new SelectListItem{Text=x.Name, Value=x.Id.ToString()}),item.Name)
+            </div>
+        }
+        <button id="btnSubmit" type="button">Submit</button>
+}

@@ -23,11 +23,27 @@ namespace ProductConfigurator.WebUI.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Index(FormCollection form)
+        public ActionResult OrderConfirmation(FormCollection form)
         {
+            Product product = _productService.GetById(int.Parse(form[0]));
+            OrderViewModel model = new OrderViewModel();
+            model.ProductName = product.Name;
+            model.CategoryParts = new List<OrderCategoryPartViewModel>();
+            //var productId = form[0];
+            //var productName = form.Keys[0];
+            for (int i = 1; i < form.AllKeys.Count(); i++)
+            {
+                Part part = _productService.GetPartById(int.Parse(form[i]));
+                OrderCategoryPartViewModel item = new OrderCategoryPartViewModel();
+                item.CategoryName = form.Keys[i];
+                item.PartName = part.Name;
+                item.PartPrice = part.Price;
+                item.PartCode = part.Code;
+                model.CategoryParts.Add(item);
+            }
+            model.TotalPrice = model.CategoryParts.Sum(x => x.PartPrice);
+            return View(model);
 
-            return View();
         }
 
         public ActionResult ProductPartial()

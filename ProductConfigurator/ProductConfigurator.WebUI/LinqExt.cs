@@ -16,11 +16,9 @@ namespace ProductConfigurator.WebUI
 			return mappedTo;
 		}
 
-		public static IEnumerable<U> MapToList<T, U>(this IEnumerable<T> model, IEnumerable<U> mapTo)
-        {
+        public static List<U> MapToList<T, U>(this IEnumerable<T> model, List<U> mapTo)        {
             AutoMapper.Mapper.CreateMap<T, U>();
-			var mappedTo = AutoMapper.Mapper.Map<IEnumerable<T>, IEnumerable<U>>(model);
-
+            var mappedTo = AutoMapper.Mapper.Map<IEnumerable<T>, List<U>>(model);
             return mappedTo;
         }
 

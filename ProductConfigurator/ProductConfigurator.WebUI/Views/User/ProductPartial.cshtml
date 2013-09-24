@@ -2,7 +2,6 @@
 
 <div>Vår partial!</div>
 
-@Html.DropDownList("ProductId", Model.Select(p => new SelectListItem{Text=p.Name, Value=p.Id.ToString()})
-    )
+@Html.DropDownList("Product", Model.Select(p => new SelectListItem{Text=p.Name, Value=p.Id.ToString()}),"Pick a product")
 
 
