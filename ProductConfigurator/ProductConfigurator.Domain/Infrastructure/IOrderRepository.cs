@@ -9,7 +9,7 @@ namespace ProductConfigurator.Domain.Infrastructure
 {
     public interface IOrderRepository
     {
-        void SaveOrder(Order order);
+        void SaveOrder(Order order, List<Part> partList);
         Order Get(int id);
     }
 }

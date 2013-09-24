@@ -7,7 +7,7 @@
         foreach (var item in Model)
         {
             <div>
-                @Html.DropDownList(item.Name, item.Parts.Select(
+                @Html.DropDownList(item.Id.ToString(), item.Parts.Select(
                     x=>new SelectListItem{Text=x.Name, Value=x.Id.ToString()}),item.Name)
             </div>
         }

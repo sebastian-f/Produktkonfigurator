@@ -8,17 +8,19 @@
 <h2>OrderConfirmation</h2>
 
 @using (Html.BeginForm("CreateOrder", "User"))
-    {
+{
 <fieldset>
     <legend>OrderViewModel</legend>
     
-        @Html.TextBoxFor(model => model.ProductName)
+        
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.ProductName)
     </div>
     <div class="display-field">
-        
+        @Html.DisplayFor(model => model.ProductName)
+        @Html.HiddenFor(model => model.ProductName)
+        @Html.HiddenFor(model => model.ProductId)
     </div>
         
     <div class="display-label">
@@ -26,6 +28,10 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.DeliveryDate)
+        @Html.HiddenFor(model => model.DeliveryDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayNameFor(model => model.TotalPrice)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.TotalPrice)
@@ -33,17 +39,22 @@
         @Html.HiddenFor(model => model.TotalPrice)
     <br />
     <div>Components:</div>
+    @{
+        int i = 0;
+      }
     @foreach (var item in Model.CategoryParts)
     {
         <div class="display-field">
-
+            @Html.HiddenFor(x=>x.CategoryParts[i].PartId)
             @item.CategoryName : @item.PartName
         </div>
+        ++i;
     }
    
 </fieldset>
+    <input type="submit" />
     }
 <p>
-    @Html.ActionLink("Confirm", "CreateOrder", new { /* id=Model.PrimaryKey */ }) |
+    
     @Html.ActionLink("Back to configuration", "Index")
 </p>

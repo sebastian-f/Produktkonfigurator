@@ -7,6 +7,7 @@ using ProductConfigurator.Domain.Infrastructure;
 using ProductConfigurator.Services.Interface;
 using ProductConfigurator.Domain.Model;
 
+
 namespace ProductConfigurator.Services.Service
 {
 	public class ProductService : IProductService

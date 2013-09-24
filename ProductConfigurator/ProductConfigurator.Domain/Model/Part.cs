@@ -14,6 +14,8 @@ namespace ProductConfigurator.Domain.Model
 		public DateTime DeliveryDate { get; set; }
 		public string Code { get; set; }
 
+        public IList<Order> Orders { get; set; }
+
 		[ForeignKey("Category")]
 		public int CategoryId { get; set; }
 
