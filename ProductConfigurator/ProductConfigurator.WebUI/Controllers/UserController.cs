@@ -69,7 +69,7 @@ namespace ProductConfigurator.WebUI.Controllers
                 partList.Add(p);
             }
             _orderService.Save(order, partList,this.User.Identity.Name);
-            return View();
+            return View(model);
         }
 
         public ActionResult ProductPartial()
