@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ProductConfigurator.WebUI.Controllers
 {
+	[Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
         //

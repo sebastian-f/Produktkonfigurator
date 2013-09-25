@@ -13,33 +13,29 @@ namespace ProductConfigurator.Repository.Context
 	{
 		public ProductConfiguratorDbContext()
 		{
-			//if (!this.Database.CompatibleWithModel(false))
-			//{
-				try
+			if (Database.CreateIfNotExists())
+			{
+				if (!Database.CompatibleWithModel(false))
 				{
-
-					Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ProductConfiguratorDbContext>());
-					this.Database.Initialize(true);
-					
-					/*
-					System.Diagnostics.Process firstProc = new System.Diagnostics.Process();
-					firstProc.StartInfo.WorkingDirectory = @"C:\Windows\Microsoft.NET\Framework\v2.0.50727";
-					firstProc.StartInfo.FileName = "aspnet_regsql.exe";
-					firstProc.EnableRaisingEvents = true;
-
-					firstProc.Start();
-
-					firstProc.WaitForExit();
-					 */
+					try
+					{
+						Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ProductConfiguratorDbContext>());
+						this.Database.Initialize(true);
+					}
+					catch (Exception ex)
+					{
+						throw new NullReferenceException("", ex);
+					}
 				}
-				catch (Exception ex)
-				{
+				System.Diagnostics.Process firstProc = new System.Diagnostics.Process();
+				firstProc.StartInfo.WorkingDirectory = @"C:\Windows\Microsoft.NET\Framework\v2.0.50727";
+				firstProc.StartInfo.FileName = "aspnet_regsql.exe";
+				firstProc.EnableRaisingEvents = true;
 
-					throw new NullReferenceException("",ex);
-				}
-			//}
+				firstProc.Start();
 
-
+				firstProc.WaitForExit();
+			}
 		}
 
 		public DbSet<User> Users { get; set; }

@@ -82,7 +82,7 @@ namespace ProductConfigurator.WebUI.Controllers
 		public ActionResult ForgotPassword(string username)
 		{
 			MembershipUser user = Membership.GetUser(username);
-
+			
 			if (user != null)
 			{
 				_mailService.SendMail(user.Email, user.UserName, "change password", "Your new Password is: " + user.ResetPassword());
@@ -95,7 +95,6 @@ namespace ProductConfigurator.WebUI.Controllers
 		[Authorize]
 		public ActionResult ChangePass()
 		{
-
 			return View();
 		}
 

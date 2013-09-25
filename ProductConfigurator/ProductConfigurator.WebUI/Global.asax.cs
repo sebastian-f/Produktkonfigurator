@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace ProductConfigurator.WebUI
 {
@@ -15,6 +16,23 @@ namespace ProductConfigurator.WebUI
 	{
 		protected void Application_Start()
 		{
+
+			var role = Roles.Provider;
+			
+
+			if (!role.RoleExists("Admin"))
+			{
+				role.CreateRole("Admin");
+			}
+			if (Membership.GetUser("MagnusAdmin", false) == null)
+			{
+				Membership.CreateUser("MagnusAdmin", "Magnus1!");
+			}
+			if (!role.GetRolesForUser("MagnusAdmin").Contains("Admin"))
+			{
+				role.AddUsersToRoles(new[] { "MagnusAdmin" }, new[] { "Admin" });
+			} 
+			
 
 			AreaRegistration.RegisterAllAreas();
 
