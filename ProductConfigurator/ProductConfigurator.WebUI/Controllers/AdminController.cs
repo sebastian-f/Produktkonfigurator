@@ -14,10 +14,12 @@ namespace ProductConfigurator.WebUI.Controllers
         // GET: /Admin/
 
 		private IProductService _productService;
+        private IOrderService _orderService;
 
-		public AdminController(IProductService productService)
+		public AdminController(IProductService productService,IOrderService orderService)
 		{
 			this._productService = productService;
+            this._orderService = orderService;
 		}
 
         public ActionResult Index()
@@ -27,18 +29,16 @@ namespace ProductConfigurator.WebUI.Controllers
 
         public ActionResult Orders()
         {
-            //TODO: GetAllOrders - service
-    
-            List<HandleOrderViewModel> orders = new List<HandleOrderViewModel>();
-            orders.Add(new HandleOrderViewModel { DeliveryDate = DateTime.Now, ProductName = "Hej!", TotalPrice = 5000,Id=1});
+
+            IEnumerable<HandleOrderViewModel> orders = _orderService.GetAll().MapToList(new List<HandleOrderViewModel>());
 
             return View(orders);
         }
 
         [HttpPost]
-        public ActionResult SendOrder(OrderViewModel order)
+        public ActionResult SendOrder(int id)
         {
-            //TODO: FINISH
+            _orderService.SendOrder(id);
             return View();
         }
 

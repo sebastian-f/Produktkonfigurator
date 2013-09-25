@@ -9,7 +9,9 @@ namespace ProductConfigurator.Domain.Infrastructure
 {
     public interface IOrderRepository
     {
+        IEnumerable<Order> GetAll();
         void SaveOrder(Order order, List<Part> partList);
         Order Get(int id);
+        void SendOrder(Order order);
     }
 }
