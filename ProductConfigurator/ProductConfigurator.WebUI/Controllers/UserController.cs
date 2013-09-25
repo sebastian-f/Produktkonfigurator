@@ -98,9 +98,16 @@ namespace ProductConfigurator.WebUI.Controllers
             return View(model);
         }
 
-        public ActionResult GetRelations(int categoryId, int partId)
+        public ActionResult GetRelations(int categoryId, int partId, int productId)
         {
             //Hämta relationer och uppdatera selectboxarna i Index.cshtml
+            var parts = _productService.GetPartsFromCategorysExceptThisPartCategory(categoryId, partId);
+            var product = _productService.GetById(productId);
+            IEnumerable<CategoryPartsViewModel> model = product.Category.MapToList(new List<CategoryPartsViewModel>());
+            foreach (var item in parts)
+            {
+                
+            }
             return null;
         }
 

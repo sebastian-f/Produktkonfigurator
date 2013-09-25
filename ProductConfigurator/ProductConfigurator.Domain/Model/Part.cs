@@ -16,6 +16,8 @@ namespace ProductConfigurator.Domain.Model
 
         public IList<Order> Orders { get; set; }
 
+        
+
 		[ForeignKey("Category")]
 		public int CategoryId { get; set; }
 
