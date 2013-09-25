@@ -6,13 +6,13 @@
                 Order ID
             </th>
             <th>
-                User
+                Parts
             </th>
             <th>
                 Total Price
             </th>
             <th>
-                Handle
+                Leveransdatum
             </th>
             <th>
                 Send
@@ -24,9 +24,11 @@
     <text>
     <tr>
         <td>@order.Id</td>
-        <td>Nisse </td>
+        <td>
+            @*@foreach(ProductConfigurator.WebUI.Models.PartViewModel part in order.CategoryParts*@
+        </td>
         <td>@order.Price </td>
-        <td>Delete</td>
+        <td>@order.DeliveryDate</td>
         <td>
             @if (order.Sent != null)
             {

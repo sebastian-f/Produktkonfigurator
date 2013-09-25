@@ -14,6 +14,7 @@ namespace ProductConfigurator.Services.Service
 
         private IOrderRepository _orderRepo;
 
+
 		public OrderService(IOrderRepository orderRepo)
 		{
             this._orderRepo = orderRepo;
@@ -41,7 +42,8 @@ namespace ProductConfigurator.Services.Service
             _orderRepo.SendOrder(order);
 
             IMailService mail = new MailService();
-            //TODO: mail.SendMail();
+            //TODO:
+            //mail.SendMail(order.OrdersUser.Email,"UserName","Order skickad!","Din order är skickad!<br><br>Order: "+order.Id+"<br>Skickad: "+DateTime.Now.ToString());
         }
     }
 }
