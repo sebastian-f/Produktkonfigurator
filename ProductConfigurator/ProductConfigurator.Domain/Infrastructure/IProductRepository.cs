@@ -24,6 +24,7 @@ namespace ProductConfigurator.Domain.Infrastructure
 		
 
 		void SaveCategory(Category category);
+		Category GetCategory(int id);
 
         
 	}
