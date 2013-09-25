@@ -4,6 +4,7 @@ using ProductConfigurator.Repository.Context;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace ProductConfigurator.Repository
         public void SaveOrder(Domain.Model.Order order, List<Part> partList)
         {
             order.Sent = false;
+            order.OrdersUser = _context.Users.SingleOrDefault(x => x.Username == order.OrdersUser.Username);
             _context.Orders.Add(order);
             foreach (var item in partList)
             {
@@ -28,7 +30,8 @@ namespace ProductConfigurator.Repository
 
         public Domain.Model.Order Get(int id)
         {
-            return _context.Orders.SingleOrDefault(x => x.Id == id);
+            return _context.Orders.Include(x=>x.OrdersUser).
+                        SingleOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Order> GetAll()

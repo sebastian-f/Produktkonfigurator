@@ -9,7 +9,7 @@ namespace ProductConfigurator.WebUI.Models
     {
         public int Id { get; set; }
         public string ProductName { get; set; }
-        public IList<OrderCategoryPartViewModel> CategoryParts { get; set; }
+        public IList<PartViewModel> Parts { get; set; }
         public DateTime DeliveryDate { get; set; }
         public decimal Price { get; set; }
         public bool Sent { get; set; }
