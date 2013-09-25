@@ -28,5 +28,20 @@ namespace ProductConfigurator.Services.Service
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Order> GetAll()
+        {
+            return _orderRepo.GetAll();
+        }
+
+        public void SendOrder(int id)
+        {
+            var order = _orderRepo.Get(id);
+            order.Sent = true;
+            _orderRepo.SendOrder(order);
+
+            IMailService mail = new MailService();
+            //TODO: mail.SendMail();
+        }
     }
 }
