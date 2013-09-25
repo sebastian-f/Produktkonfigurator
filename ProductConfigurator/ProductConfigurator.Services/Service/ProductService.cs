@@ -91,5 +91,29 @@ namespace ProductConfigurator.Services.Service
 			}
 			return parts;
 		}
+
+		public IEnumerable<Part> GetPartsFromCategory(int productId, int partId)
+		{
+			var parts = new List<Part>();
+
+			var part = GetPartById(partId);
+			foreach (var cat in GetById(productId).Category)
+			{
+				if (cat.Id == part.CategoryId)
+				{
+					foreach (var __part in cat.Parts)
+					{
+						parts.Add(__part);
+					}
+				}
+			}
+			return parts;
+		}
+
+
+		public Category GetCategory(int id)
+		{
+			return _productRepo.GetCategory(id);
+		}
 	}
 }

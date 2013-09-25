@@ -1,0 +1,7 @@
+﻿@model ProductConfigurator.WebUI.Models.CategoryPartsViewModel
+
+@if (Model != null)
+{
+	@Html.DropDownList(Model.Id.ToString(), Model.Parts.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = false }), "Select " + Model.Name, new { @class = "partSelect" })
+
+}

@@ -1,7 +1,7 @@
 ﻿/// <reference path="../Scripts/jquery-2.0.3.min.js" />
 /// <reference path="../Scripts/jquery-2.0.3.intellisense.js" />
 
-
+/*
 String.prototype.format = String.prototype.f = function () {
 	var s = this,
         i = arguments.length;
@@ -9,13 +9,11 @@ String.prototype.format = String.prototype.f = function () {
 		s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
 	}
 	return s;
-}
+}*/
 
 $(function () {
 
 	ajax("#Product", "Admin/ProductPartial");
-	ajax("#Category", "Admin/CategoryPartial", 0);
-	ajax("#Part", "Admin/PartPartial", 0);
 
 	$('#ProductList').change(function () {
 
@@ -58,8 +56,6 @@ function SaveRels(idList) {
 	var productId = $('#PartList :selected').val();
 
 	for (var i = 0; i < idList.length; i++) {
-
-
 		var baseUrl = "http://localhost:10764" + "/Admin/AddRelation?oneId=" + productId + "&twoId=" + idList[i];
 
 		$.ajax({

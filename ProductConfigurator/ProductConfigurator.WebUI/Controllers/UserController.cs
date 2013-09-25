@@ -98,10 +98,26 @@ namespace ProductConfigurator.WebUI.Controllers
             return View(model);
         }
 
-        public ActionResult GetRelations(int categoryId, int partId)
+        public ActionResult GetRelationsPartPartial(int categoryId, int partId)
         {
-            //Hämta relationer och uppdatera selectboxarna i Index.cshtml
-            return null;
+			//Hämta relationer och uppdatera selectboxarna i Index.cshtml
+
+			var parts = _productService.GetPartsByCategoryId(categoryId);
+
+
+			var catparts = new CategoryPartsViewModel();
+			catparts.Id = categoryId;
+			catparts.Name = _productService.GetCategory(categoryId).Name;
+			catparts.Parts = new List<PartViewModel>();
+			foreach (var part in parts)
+			{
+				if (_productService.HasRelations(partId, part.Id))
+				{
+					catparts.Parts.Add(part.MapTo(new PartViewModel()));
+				}
+			}
+			
+			return View(catparts);
         }
 
     }

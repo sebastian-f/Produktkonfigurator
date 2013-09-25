@@ -16,7 +16,8 @@
 }
 
 <script>
-    $(document).ready(function () {
+	$(document).ready(function () {
+		
         $('select').change(selectChange);
         
     });
@@ -48,19 +49,48 @@
         else if(select == "Product" && id == "")
             $("#categoryPartial").html("");
 
-        else if (select != "Product" && id != "")
-        {
-            $.ajax({
-                url: '@Url.Action("GetRelations", "User")',
-                data: { 'partId': $(this).val(), 'categoryId': select },
-                type: "post",
-                success: function (data) {
-                    alert("success");
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
+        else if (select != "Product" && id != "") {
+        	var partId = $(this).val();
+        	var klickad = $(this).attr('name');
+
+        	var selectList = new Array();
+        	var categoryIds = new Array();
+        	$('.partSelect').each(function () {
+        		if ($(this).val() != "") {
+        			selectList.push({ selectName: $(this).attr('name'), selectedOption: $(this).val() });
+        			categoryIds.push($(this).attr('name'));
+        		}
+        	});
+
+
+
+
+			
+        	$('.partSelect').each(function () {
+        		var $this = $(this);
+        		if ($(this).val() != partId) {
+        			$.ajax({
+        				url: '@Url.Action("GetRelationsPartPartial", "User")',
+        				data: { 'partId': partId, 'categoryId': $(this).attr('name') },
+        				type: "post",
+        				success: function (data) {
+        					$this.html(data);
+
+        					for (var i = 0; i < selectList.length; i++) {
+        						$('.partSelect').each(function () {
+        							if ($(this).attr('name') == selectList[i].selectName) {
+        								$(this).val(selectList[i].selectedOption);
+        							}
+        						});
+        					}
+        				},
+        				error: function () {
+        					alert("error");
+        				}
+        			});
+        		}
+        	});
+			
         }
 
         
