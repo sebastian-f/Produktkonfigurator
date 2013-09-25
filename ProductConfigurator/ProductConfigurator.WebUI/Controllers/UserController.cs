@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using ProductConfigurator.WebUI.Models;
 using ProductConfigurator.Domain.Model;
@@ -67,7 +68,7 @@ namespace ProductConfigurator.WebUI.Controllers
                 
                 partList.Add(p);
             }
-            _orderService.Save(order, partList);
+            _orderService.Save(order, partList,this.User.Identity.Name);
             return View();
         }
 

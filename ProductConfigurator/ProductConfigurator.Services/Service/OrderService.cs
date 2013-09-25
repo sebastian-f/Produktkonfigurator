@@ -13,15 +13,19 @@ namespace ProductConfigurator.Services.Service
     {
 
         private IOrderRepository _orderRepo;
+        private IUserRepository _userRepo;
 
 
-		public OrderService(IOrderRepository orderRepo)
+		public OrderService(IOrderRepository orderRepo,IUserRepository userRepo)
 		{
             this._orderRepo = orderRepo;
+            this._userRepo = userRepo;
 		}
 
-        public void Save(Domain.Model.Order order, List<Part> partList)
+        public void Save(Domain.Model.Order order, List<Part> partList,string userName)
         {
+            User user = _userRepo.GetUserByName(userName);
+            order.OrdersUser = user;
             _orderRepo.SaveOrder(order, partList);
         }
 
