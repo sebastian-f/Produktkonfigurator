@@ -1,15 +1,12 @@
 ﻿@model IEnumerable<ProductConfigurator.WebUI.Models.CategoryPartsViewModel>
 
-<div>Vår andra partial!</div>
 @if(Model!=null)
 {
     
-        foreach (var item in Model)
-        {
-            <div>
-                @Html.DropDownList(item.Id.ToString(), item.Parts.Select(
-                    x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = false }), item.Name, new { @class="partSelects" })
-            </div>
-        }
-        <button id="btnSubmit" type="button">Submit</button>
+	foreach (var item in Model)
+	{
+		@Html.Partial("GetRelationsPartPartial", item)
+	<br />
+	}
+	<button id="btnSubmit" type="button">Submit</button>
 }

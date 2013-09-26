@@ -12,6 +12,5 @@ namespace ProductConfigurator.Domain.Infrastructure
 		void SaveUser(User user);
 		User GetUserByName(string name);
 
-		void SaveOrder(Order order);
 	}
 }

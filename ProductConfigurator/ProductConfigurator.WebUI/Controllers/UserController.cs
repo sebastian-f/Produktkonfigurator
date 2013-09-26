@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ProductConfigurator.WebUI.Models;
 using ProductConfigurator.Domain.Model;
+using ProductConfigurator.WebUI.Methods.User;
 
 
 namespace ProductConfigurator.WebUI.Controllers
@@ -14,12 +15,14 @@ namespace ProductConfigurator.WebUI.Controllers
     {
         private IProductService _productService;
         private IOrderService _orderService;
+        public UserMethods _methods;
 
-        public UserController(IProductService productService, IOrderService orderService)
-		{
-			_productService = productService;
+        public UserController(IProductService productService, IOrderService orderService, UserMethods methods)
+        {
+            _methods = methods;
+            _productService = productService;
             _orderService = orderService;
-		}
+        }
         public ActionResult Index()
         {
             //Man måste vara inloggad
@@ -29,6 +32,7 @@ namespace ProductConfigurator.WebUI.Controllers
 
         public ActionResult OrderConfirmation(FormCollection form)
         {
+            //Skapa ORDERVIEWMODEL från formcollection
             Product product = _productService.GetById(int.Parse(form[0]));
             OrderViewModel model = new OrderViewModel();
             model.ProductName = product.Name;
@@ -40,7 +44,7 @@ namespace ProductConfigurator.WebUI.Controllers
             {
                 Part part = _productService.GetPartById(int.Parse(form[i]));
                 OrderCategoryPartViewModel item = new OrderCategoryPartViewModel();
-                item.CategoryName = form.Keys[i];
+                item.CategoryName = _productService.GetCategory(int.Parse(form.Keys[i])).Name;
                 item.PartName = part.Name;
                 item.PartPrice = part.Price;
                 item.PartCode = part.Code;
@@ -56,27 +60,14 @@ namespace ProductConfigurator.WebUI.Controllers
 
         public ActionResult CreateOrder(OrderViewModel model)
         {
-            Order order = new Order();
-            order.Price = model.TotalPrice;
-            List<Part> partList = new List<Part>();
-            order.DeliveryDate = model.DeliveryDate;
-            
-            foreach (var item in model.CategoryParts)
-            {
-                Part p = _productService.GetPartById(item.PartId);
-                
-                partList.Add(p);
-            }
-            _orderService.Save(order, partList);
+            //Skapa order
+            _methods.CreateOrder(model);
             return View();
         }
 
         public ActionResult ProductPartial()
         {
-            //IEnumerable<ProductViewModel> model = _productService.GetAll().MapToList(new List<ProductViewModel>());
             IEnumerable<Product> products = _productService.GetAll();
-
-            //AutoMapper.Mapper.CreateMap<Product, ProductViewModel>();
             IEnumerable<ProductViewModel> model = products.MapToList(new List<ProductViewModel>());
 
             return View(model);
@@ -93,22 +84,17 @@ namespace ProductConfigurator.WebUI.Controllers
         {
             //HÄMTA ALLA KATEGORIER SOM HÖR TILL DENNA PRODUKTID
             var product = _productService.GetById(productId);
-            
             IEnumerable<CategoryPartsViewModel> model = product.Category.MapToList(new List<CategoryPartsViewModel>());
             return View(model);
         }
 
-        public ActionResult GetRelations(int categoryId, int partId, int productId)
+        public ActionResult GetRelationsPartPartial(int categoryId, string partIdsString)
         {
-            //Hämta relationer och uppdatera selectboxarna i Index.cshtml
-            var parts = _productService.GetPartsFromCategorysExceptThisPartCategory(categoryId, partId);
-            var product = _productService.GetById(productId);
-            IEnumerable<CategoryPartsViewModel> model = product.Category.MapToList(new List<CategoryPartsViewModel>());
-            foreach (var item in parts)
-            {
-                
-            }
-            return null;
+			//Hämta relationer och uppdatera selectboxarna i Index.cshtml
+            CategoryPartsViewModel model = new CategoryPartsViewModel();
+            model = _methods.GetUpdatedModelForSelectList(categoryId, partIdsString);
+
+			return View(model);
         }
 
     }

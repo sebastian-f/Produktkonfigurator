@@ -15,6 +15,8 @@ namespace ProductConfigurator.Domain.Model
 		public DateTime DeliveryDate { get; set; }
 		public string Code { get; set; }
 		public IList<Part> Parts { get; set; }
+        public bool Sent { get; set; }
+        public User OrdersUser { get; set; }
         
 	}
 }

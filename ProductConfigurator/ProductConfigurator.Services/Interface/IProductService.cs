@@ -20,5 +20,6 @@ namespace ProductConfigurator.Services.Interface
 		void SavePartRelation(int one, List<int> two);
 		IQueryable<PartCompatibility> GetRelations(int partId);
 		bool HasRelations(int partId, int compareTo);
+		Category GetCategory(int id);
 	}
 }

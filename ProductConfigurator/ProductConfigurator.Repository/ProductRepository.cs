@@ -84,5 +84,11 @@ namespace ProductConfigurator.Repository
 			else
 				return false;
 		}
+
+
+		public Domain.Model.Category GetCategory(int id)
+		{
+			return _context.Categorys.SingleOrDefault(x => x.Id == id);
+		}
 	}
 }

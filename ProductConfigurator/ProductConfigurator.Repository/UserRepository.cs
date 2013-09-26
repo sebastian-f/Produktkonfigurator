@@ -24,10 +24,5 @@ namespace ProductConfigurator.Repository
 		{
 			return _context.Users.Include(y=>y.Orders.Select(z=>z.Parts)).SingleOrDefault(x => x.Username == name);
 		}
-
-		public void SaveOrder(Domain.Model.Order order)
-		{
-			_context.Orders.Add(order);
-		}
 	}
 }

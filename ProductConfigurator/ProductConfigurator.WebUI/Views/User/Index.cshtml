@@ -15,65 +15,9 @@
     
 }
 
+@System.Web.Optimization.Scripts.Render("~/bundles/user")
+
 <script>
-    $(document).ready(function () {
-        $('select').change(selectChange);
-        
-    });
-
-    function Submit() {
-        $("form").submit();
-    }
-
-    function selectChange()
-    {
-        var select = $(this).attr("name")
-        var id = $(this).val();
-        if (select == "Product" && id != "") {
-            $.ajax({
-                url: '@Url.Action("CategoryPartial", "User")',
-                data: { 'productId': id },
-                type: "post",
-                success: function (data) {
-                    $("#categoryPartial").html(data);
-                    $('#btnSubmit').click(Submit);
-                    $('select').change(selectChange);
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
-        }
-
-        else if(select == "Product" && id == "")
-            $("#categoryPartial").html("");
-
-        else if (select != "Product" && id != "")
-        {
-            
-            $(".partSelects").each(function () {
-                debugger;
-                if ($(this).val() != id)
-                    alert(id);
-                else
-                    alert($(this).val());
-            });
-        
-            
-            @*$.ajax({
-                url: '@Url.Action("GetRelations", "User")',
-                data: { 'partId': $(this).val(), 'categoryId': select, "productId":$("Product").val() },
-                type: "post",
-                success: function (data) {
-                    alert("success");
-                },
-                error: function () {
-                    alert("error");
-                }
-            });*@
-        }
-
-        
-    }
+    var CategoryPartialUrl = '@Url.Action("CategoryPartial", "User")';
+    var RelationPartialsPartUrl = '@Url.Action("GetRelationsPartPartial", "User")';
 </script>
-

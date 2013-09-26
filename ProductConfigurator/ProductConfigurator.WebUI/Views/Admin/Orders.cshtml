@@ -6,13 +6,13 @@
                 Order ID
             </th>
             <th>
-                User
+                Parts
             </th>
             <th>
                 Total Price
             </th>
             <th>
-                Handle
+                Leveransdatum
             </th>
             <th>
                 Send
@@ -24,10 +24,33 @@
     <text>
     <tr>
         <td>@order.Id</td>
-        <td>Nisse </td>
-        <td>@order.TotalPrice </td>
-        <td>Delete</td>
-        <td><a href="#">Send order</a></td>
+        <td>
+            @*@foreach(ProductConfigurator.WebUI.Models.PartViewModel part in order.CategoryParts*@
+        </td>
+        <td>@order.Price </td>
+        <td>@order.DeliveryDate</td>
+        <td>
+            @if (order.Sent != null)
+            {
+                if(order.Sent==false)
+                {
+                    using (Html.BeginForm("SendOrder", "Admin", new { id = order.Id }))
+                    {
+                    <button type="submit">
+                        Send order
+                    </button>
+                    }
+                }else{
+                    <text>
+                        Order skickad!
+                    </text>
+                }
+            }else{
+                    <text>
+                        Order skickad!
+                    </text>   
+            }
+        </td>
     </tr>
 
 

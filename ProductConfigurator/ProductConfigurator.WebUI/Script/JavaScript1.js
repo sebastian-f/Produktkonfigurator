@@ -1,9 +1,19 @@
-﻿/// <reference path="jquery-1.9.1.min.js" />
+﻿/// <reference path="../Scripts/jquery-2.0.3.min.js" />
+/// <reference path="../Scripts/jquery-2.0.3.intellisense.js" />
+
+/*
+String.prototype.format = String.prototype.f = function () {
+	var s = this,
+        i = arguments.length;
+	while (i--) {
+		s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
+	}
+	return s;
+}*/
 
 $(function () {
 
 	ajax("#Product", "Admin/ProductPartial");
-
 
 	$('#ProductList').change(function () {
 
@@ -36,22 +46,6 @@ $(function () {
 					list[0] = $(this).attr('value');
 					SaveRels(list);
 				});
-				
-
-				/*
-				$('#relation').click(function () {
-					var list = new Array();
-					var i = 0;
-					$(".box").each(function () {
-						if ($(this).prop('checked')) {
-							list[i] = $(this).attr('value');
-							i++;
-						}
-					});
-					SaveRels(list);
-
-
-				});*/
 			});
 		});
 	});
@@ -62,8 +56,6 @@ function SaveRels(idList) {
 	var productId = $('#PartList :selected').val();
 
 	for (var i = 0; i < idList.length; i++) {
-
-
 		var baseUrl = "http://localhost:10764" + "/Admin/AddRelation?oneId=" + productId + "&twoId=" + idList[i];
 
 		$.ajax({
@@ -81,26 +73,23 @@ function SaveRels(idList) {
 }
 
 /*
-function SaveObj(name, path) {
-	var baseUrl = "http://" + location.host + "/" + path
-
-	var productId = $('#ProductList :selected').val()
+function SaveObj(pos, path) {
+	var baseUrl = "http://" + location.host + "/" + path;
 
 	$.ajax({
 		type: "POST",
 		url: baseUrl,
-		async: false,
-		data: { name: name, productId: productId },
+		async: true,
 		success: function (result) {
-			$(pos).html(result);
+
 		},
 		error: function (xhr, status) {
 			alert(status);
 		}
 	});
 	
-}
-*/
+}*/
+
 
 
 
