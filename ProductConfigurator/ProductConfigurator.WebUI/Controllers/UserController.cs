@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using ProductConfigurator.WebUI.Models;
 using ProductConfigurator.Domain.Model;
@@ -11,6 +12,8 @@ using ProductConfigurator.WebUI.Methods.User;
 
 namespace ProductConfigurator.WebUI.Controllers
 {
+
+	[Authorize]
     public class UserController : Controller
     {
         private IProductService _productService;
@@ -94,6 +97,7 @@ namespace ProductConfigurator.WebUI.Controllers
             CategoryPartsViewModel model = new CategoryPartsViewModel();
             model = _methods.GetUpdatedModelForSelectList(categoryId, partIdsString);
 
+			
 			return View(model);
         }
 

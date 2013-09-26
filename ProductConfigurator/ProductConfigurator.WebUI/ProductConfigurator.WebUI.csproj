@@ -208,8 +208,14 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ChangePass.cshtml" />
     <Content Include="Views\Admin\Orders.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\User\GetRelationsPartPartial.cshtml" />
     <Content Include="Views\Admin\SendOrder.cshtml" />
+=======
+>>>>>>> aade97375dca9f550fed53fc5740dfbcde4f169b
+    <Content Include="Views\User\GetRelationsPartPartial.cshtml" />
+    <Content Include="Views\Admin\SendOrder.cshtml" />
+    <Content Include="Views\User\CreateOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

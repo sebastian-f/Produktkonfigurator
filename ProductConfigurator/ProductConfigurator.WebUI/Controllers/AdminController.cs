@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ProductConfigurator.WebUI.Controllers
 {
+	[Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
         //
@@ -36,6 +37,7 @@ namespace ProductConfigurator.WebUI.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SendOrder(int id)
         {
             _orderService.SendOrder(id);

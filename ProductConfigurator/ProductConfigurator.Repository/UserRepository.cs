@@ -22,7 +22,8 @@ namespace ProductConfigurator.Repository
 
 		public Domain.Model.User GetUserByName(string name)
 		{
-			return _context.Users.Include(y=>y.Orders.Select(z=>z.Parts)).SingleOrDefault(x => x.Username == name);
+            return _context.Users.Include(y=>y.Orders.Select(z=>z.Parts)).SingleOrDefault(x => x.Username == name);
+            //return _context.Users.SingleOrDefault(x => x.Username == name);
 		}
 	}
 }

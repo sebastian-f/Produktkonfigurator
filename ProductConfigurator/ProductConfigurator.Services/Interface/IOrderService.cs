@@ -11,7 +11,7 @@ namespace ProductConfigurator.Services.Interface
     {
         void SendOrder(int id);
         IEnumerable<Order> GetAll();
-        void Save(Order order, List<Part> partList);
+        void Save(Order order, List<Part> partList, string userName);
         Order Get(int id);
     }
 }

@@ -13,16 +13,24 @@ namespace ProductConfigurator.Services.Service
     {
 
         private IOrderRepository _orderRepo;
+        private IUserRepository _userRepo;
 
 
-		public OrderService(IOrderRepository orderRepo)
+		public OrderService(IOrderRepository orderRepo,IUserRepository userRepo)
 		{
             this._orderRepo = orderRepo;
+            this._userRepo = userRepo;
 		}
 
-        public void Save(Domain.Model.Order order, List<Part> partList)
+        public void Save(Domain.Model.Order order, List<Part> partList,string userName)
         {
-            _orderRepo.SaveOrder(order, partList);
+            User user = _userRepo.GetUserByName(userName);
+            order.OrdersUser = user;
+            //TODO: Gör klart
+            if (userName != null && order.Price != 0 && partList.Count>0)
+            {
+                _orderRepo.SaveOrder(order, partList);
+            }
         }
 
         public Domain.Model.Order Get(int id)
@@ -37,13 +45,19 @@ namespace ProductConfigurator.Services.Service
 
         public void SendOrder(int id)
         {
-            var order = _orderRepo.Get(id);
-            order.Sent = true;
-            _orderRepo.SendOrder(order);
+            try
+            {
+                var order = _orderRepo.Get(id);
+                order.Sent = true;
+                _orderRepo.SendOrder(order);
 
-            IMailService mail = new MailService();
-            //TODO:
-            //mail.SendMail(order.OrdersUser.Email,"UserName","Order skickad!","Din order är skickad!<br><br>Order: "+order.Id+"<br>Skickad: "+DateTime.Now.ToString());
+                IMailService mail = new MailService();
+                //TODO:
+                //mail.SendMail(order.OrdersUser.Email,"UserName","Order skickad!","Din order är skickad!<br><br>Order: "+order.Id+"<br>Skickad: "+DateTime.Now.ToString());
+            }
+            catch {
+                //Hittade inte id
+            }
         }
     }
 }

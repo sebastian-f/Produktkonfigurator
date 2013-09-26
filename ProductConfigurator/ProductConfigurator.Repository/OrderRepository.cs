@@ -18,6 +18,7 @@ namespace ProductConfigurator.Repository
         public void SaveOrder(Domain.Model.Order order, List<Part> partList)
         {
             order.Sent = false;
+            order.OrdersUser = _context.Users.SingleOrDefault(x => x.Username == order.OrdersUser.Username);
             _context.Orders.Add(order);
             foreach (var item in partList)
             {

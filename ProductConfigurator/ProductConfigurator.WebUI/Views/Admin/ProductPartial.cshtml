@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<ProductConfigurator.WebUI.Models.ProductViewModel>
 
-@{
-	
-}
-
 <div class="span6 center">
 	@Html.DropDownList("ProductList", Model.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = false }), "Choose Product ...")
 </div>

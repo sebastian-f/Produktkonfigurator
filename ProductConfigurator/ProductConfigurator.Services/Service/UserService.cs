@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProductConfigurator.Domain.Infrastructure;
 using ProductConfigurator.Services.Interface;
+using ProductConfigurator.Domain.Model;
 
 
 namespace ProductConfigurator.Services.Service
@@ -20,7 +21,11 @@ namespace ProductConfigurator.Services.Service
 
 		public void CreateUser(Domain.Model.User user)
 		{
-			_userRepo.SaveUser(user);
+            User testUser =_userRepo.GetUserByName(user.Username);
+            if (testUser != null)
+            {
+                _userRepo.SaveUser(user);
+            }
 		}
 	}
 }
