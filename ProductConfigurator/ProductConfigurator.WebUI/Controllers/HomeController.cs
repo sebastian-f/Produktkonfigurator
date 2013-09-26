@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ProductConfigurator.Domain.Infrastructure;
 using ProductConfigurator.Services.Interface;
 using ProductConfigurator.WebUI.Models;
+using System.Web.Security;
 
 namespace ProductConfigurator.WebUI.Controllers
 {
@@ -20,17 +21,15 @@ namespace ProductConfigurator.WebUI.Controllers
 			this._productService = productService;
 		}
 
+
         public ActionResult Index()
         {
-            //TESTAR
-            //ProductViewModel product = new ProductViewModel{Name="Båt"};
-            //_productService.SaveProduct(product.ToDomainModel());
-
-			IEnumerable<ProductViewModel> products = _productService.GetAll().MapTo(new List<ProductViewModel>());//.ToViewModel();
-
-            return View();
+			if (User.IsInRole("Admin"))
+				return RedirectToAction("Index", "Admin");
+			else if (User.Identity.IsAuthenticated)
+				return RedirectToAction("Index", "User");
+			else
+				return View();
         }
-
-
     }
 }

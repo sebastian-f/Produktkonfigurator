@@ -11,6 +11,8 @@ using ProductConfigurator.Domain.Model;
 
 namespace ProductConfigurator.WebUI.Controllers
 {
+
+	[Authorize]
     public class UserController : Controller
     {
         private IProductService _productService;
