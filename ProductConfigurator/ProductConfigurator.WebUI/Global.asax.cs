@@ -24,13 +24,13 @@ namespace ProductConfigurator.WebUI
 			{
 				role.CreateRole("Admin");
 			}
-			if (Membership.GetUser("MagnusAdmin", false) == null)
+			if (Membership.GetUser("Admin", false) == null)
 			{
-				Membership.CreateUser("MagnusAdmin", "Magnus1!");
+				Membership.CreateUser("Admin", "Admin1!");
 			}
-			if (!role.GetRolesForUser("MagnusAdmin").Contains("Admin"))
+			if (!role.GetRolesForUser("Admin").Contains("Admin"))
 			{
-				role.AddUsersToRoles(new[] { "MagnusAdmin" }, new[] { "Admin" });
+				role.AddUsersToRoles(new[] { "Admin" }, new[] { "Admin" });
 			} 
 			
 
