@@ -37,6 +37,7 @@ namespace ProductConfigurator.WebUI.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SendOrder(int id)
         {
             _orderService.SendOrder(id);

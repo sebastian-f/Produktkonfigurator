@@ -1,9 +1,15 @@
 ﻿@model IList<ProductConfigurator.WebUI.Models.HandleOrderViewModel>
 
 @{
+<<<<<<< HEAD
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+=======
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+>>>>>>> aade97375dca9f550fed53fc5740dfbcde4f169b
     <table>
         <tr>
             <th>
@@ -32,7 +38,7 @@
             @*@foreach(ProductConfigurator.WebUI.Models.PartViewModel part in order.CategoryParts*@
         </td>
         <td>@order.Price </td>
-        <td>@order.DeliveryDate</td>
+        <td>@order.DeliveryDate.ToString("yyyy-mm-dd")</td>
         <td>
             @if (order.Sent != null)
             {
@@ -40,9 +46,10 @@
                 {
                     using (Html.BeginForm("SendOrder", "Admin", new { id = order.Id }))
                     {
-                    <button type="submit">
-                        Send order
-                    </button>
+                        @Html.AntiForgeryToken()
+                        <button type="submit">
+                            Send order
+                        </button>
                     }
                 }else{
                     <text>
