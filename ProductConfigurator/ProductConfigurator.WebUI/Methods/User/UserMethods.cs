@@ -3,6 +3,7 @@ using ProductConfigurator.Services.Interface;
 using ProductConfigurator.WebUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -60,21 +61,50 @@ namespace ProductConfigurator.WebUI.Methods.User
             return catparts;
         }
 
-        public void CreateOrder(OrderViewModel orderModel, string user)
+        public void CreateOrder(OrderViewModel orderModel)
         {
             Order order = new Order();
             order.Price = orderModel.TotalPrice;
             List<Part> partList = new List<Part>();
             order.DeliveryDate = orderModel.DeliveryDate;
-            
+
+			var codeString = "";
+
             foreach (var item in orderModel.CategoryParts)
             {
                 Part p = _productService.GetPartById(item.PartId);
-
                 partList.Add(p);
+
+				codeString += CodeBefore + item.PartCode + CodeAfter + CodeDevider;
             }
-            _orderService.Save(order, partList, user);
+			codeString = codeString.Remove(codeString.LastIndexOf(CodeDevider));
+
+            _orderService.Save(order, partList);
             
         }
+
+		public static string CodeBefore
+		{
+			get
+			{
+				return ConfigurationManager.AppSettings["CodeBefore"];
+			}
+		}
+
+		public static string CodeAfter
+		{
+			get
+			{
+				return ConfigurationManager.AppSettings["CodeAfter"];
+			}
+		}
+
+		public static string CodeDevider
+		{
+			get
+			{
+				return ConfigurationManager.AppSettings["CodeDevider"];
+			}
+		}
     }
 }
