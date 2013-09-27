@@ -1,7 +1,10 @@
 ﻿@model ProductConfigurator.WebUI.Models.OrderViewModel
-
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <h2>Order sparad!</h2>
-Beräknas skickas: @Model.DeliveryDate.ToString("yyy-mm-dd")
+Beräknas skickas: @Model.DeliveryDate.ToString("yyyy-MM-dd")
 <br />
 Ett mail skickas när ordern är på väg.
 

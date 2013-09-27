@@ -64,8 +64,9 @@ namespace ProductConfigurator.WebUI.Controllers
         public ActionResult CreateOrder(OrderViewModel model)
         {
             //Skapa order
-            _methods.CreateOrder(model);
-            return View();
+            string userName = User.Identity.Name;
+            _methods.CreateOrder(model, userName);
+            return View(model);
         }
 
         public ActionResult ProductPartial()
