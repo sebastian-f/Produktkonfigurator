@@ -22,7 +22,7 @@ namespace ProductConfigurator.Services.Service
 		public void CreateUser(Domain.Model.User user)
 		{
             User testUser =_userRepo.GetUserByName(user.Username);
-            if (testUser != null)
+            if (testUser == null)
             {
                 _userRepo.SaveUser(user);
             }

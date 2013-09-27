@@ -60,20 +60,20 @@ namespace ProductConfigurator.WebUI.Methods.User
             return catparts;
         }
 
-        public void CreateOrder(OrderViewModel orderModel)
+        public void CreateOrder(OrderViewModel orderModel, string user)
         {
             Order order = new Order();
             order.Price = orderModel.TotalPrice;
             List<Part> partList = new List<Part>();
             order.DeliveryDate = orderModel.DeliveryDate;
-
+            
             foreach (var item in orderModel.CategoryParts)
             {
                 Part p = _productService.GetPartById(item.PartId);
 
                 partList.Add(p);
             }
-            _orderService.Save(order, partList);
+            _orderService.Save(order, partList, user);
             
         }
     }
