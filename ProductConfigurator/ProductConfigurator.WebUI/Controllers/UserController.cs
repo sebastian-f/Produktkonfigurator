@@ -65,6 +65,7 @@ namespace ProductConfigurator.WebUI.Controllers
         {
             //Skapa order
             string userName = User.Identity.Name;
+
             _methods.CreateOrder(model, userName);
             return View(model);
         }

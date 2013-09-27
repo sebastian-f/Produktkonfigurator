@@ -75,7 +75,7 @@ namespace ProductConfigurator.WebUI.Methods.User
                 Part p = _productService.GetPartById(item.PartId);
                 partList.Add(p);
 
-				codeString += CodeBefore + item.PartCode + CodeAfter + CodeDevider;
+				codeString += CodeBefore + p.Code + CodeAfter + CodeDevider;
             }
 			codeString = codeString.Remove(codeString.LastIndexOf(CodeDevider));
 			order.Code = codeString;
