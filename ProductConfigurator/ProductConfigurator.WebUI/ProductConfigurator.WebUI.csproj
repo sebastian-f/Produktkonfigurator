@@ -150,6 +150,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LinqExt.cs" />
+    <Compile Include="Methods\User\UserMethods.cs" />
     <Compile Include="Models\CategoryPartsViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\HandleOrderViewModel.cs" />
@@ -190,6 +191,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Script\datepickr.js" />
     <Content Include="Script\JavaScript1.js" />
+    <Content Include="Script\UserScript.js" />
     <Content Include="Style\StyleSheet1.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

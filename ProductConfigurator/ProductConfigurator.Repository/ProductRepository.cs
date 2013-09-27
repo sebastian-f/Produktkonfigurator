@@ -72,6 +72,10 @@ namespace ProductConfigurator.Repository
 			return _context.PartCompatibilitys.Where(x=>x.PartOne.Id == partId || x.PartTwo.Id == partId);
 		}
 
+        //public <IQueryable>Domain.Model.Part GetRelations2(int partId)
+        //{
+        //    return _context.PartCompatibilitys.Include(x=>x.
+        //}
 
 		public bool HasRelations(int partId, int compareTo)
 		{
