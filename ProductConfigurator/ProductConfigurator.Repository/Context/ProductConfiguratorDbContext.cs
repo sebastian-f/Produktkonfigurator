@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using ProductConfigurator.Domain.Model;
+using System.Web.Security;
 
 namespace ProductConfigurator.Repository.Context
 {
@@ -35,6 +36,21 @@ namespace ProductConfigurator.Repository.Context
 				firstProc.Start();
 
 				firstProc.WaitForExit();
+
+				var role = Roles.Provider;
+
+				if (!role.RoleExists("Admin"))
+				{
+					role.CreateRole("Admin");
+				}
+				if (Membership.GetUser("Admin", false) == null)
+				{
+					Membership.CreateUser("Admin", "Admin1!");
+				}
+				if (!role.GetRolesForUser("Admin").Contains("Admin"))
+				{
+					role.AddUsersToRoles(new[] { "Admin" }, new[] { "Admin" });
+				} 
 			}
 		}
 

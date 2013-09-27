@@ -61,7 +61,7 @@ namespace ProductConfigurator.WebUI.Methods.User
             return catparts;
         }
 
-        public void CreateOrder(OrderViewModel orderModel)
+        public void CreateOrder(OrderViewModel orderModel, string username)
         {
             Order order = new Order();
             order.Price = orderModel.TotalPrice;
@@ -79,7 +79,7 @@ namespace ProductConfigurator.WebUI.Methods.User
             }
 			codeString = codeString.Remove(codeString.LastIndexOf(CodeDevider));
 			order.Code = codeString;
-            _orderService.Save(order, partList);
+            _orderService.Save(order, partList, username);
             
         }
 

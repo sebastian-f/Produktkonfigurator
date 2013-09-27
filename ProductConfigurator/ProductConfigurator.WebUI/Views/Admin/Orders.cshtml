@@ -1,22 +1,17 @@
 ﻿@model IList<ProductConfigurator.WebUI.Models.HandleOrderViewModel>
 
 @{
-<<<<<<< HEAD
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-=======
+@Html.ActionLink("Admin", "Index")
+<br /><br />
 
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
->>>>>>> aade97375dca9f550fed53fc5740dfbcde4f169b
+
     <table>
         <tr>
             <th>
-                Order ID
-            </th>
-            <th>
-                Parts
+                OrderID
             </th>
             <th>
                 Total Price
@@ -34,9 +29,6 @@
     <text>
     <tr>
         <td>@order.Id</td>
-        <td>
-            @*@foreach(ProductConfigurator.WebUI.Models.PartViewModel part in order.CategoryParts*@
-        </td>
         <td>@order.Price </td>
         <td>@order.DeliveryDate.ToString("yyyy-mm-dd")</td>
         <td>

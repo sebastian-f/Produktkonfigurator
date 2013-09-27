@@ -17,9 +17,8 @@ namespace ProductConfigurator.WebUI
 		protected void Application_Start()
 		{
 
-			var role = Roles.Provider;
+			/*var role = Roles.Provider;
 			
-
 			if (!role.RoleExists("Admin"))
 			{
 				role.CreateRole("Admin");
@@ -31,7 +30,7 @@ namespace ProductConfigurator.WebUI
 			if (!role.GetRolesForUser("Admin").Contains("Admin"))
 			{
 				role.AddUsersToRoles(new[] { "Admin" }, new[] { "Admin" });
-			} 
+			} */
 			
 
 			AreaRegistration.RegisterAllAreas();
